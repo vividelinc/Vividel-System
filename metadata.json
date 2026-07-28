@@ -1,0 +1,6 @@
+{
+  "name": "Vividel Inc.",
+  "description": "Digital operations platform and booking system for Vividel Inc. commercial and event photography studio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

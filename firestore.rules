@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function for authentication
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Services - public read and write so default services can be initialized
+    match /services/{serviceId} {
+      allow read, write: if true;
+    }
+
+    // Leads - public create for prospective clients, full access for authenticated users
+    match /leads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Bookings - public create for client booking form, full access for authenticated users
+    match /bookings/{bookingId} {
+      allow create: if true;
+      allow read, update, delete: if isAuthenticated();
+    }
+
+    // Clients - public create or update during booking, full access for authenticated users
+    match /clients/{clientId} {
+      allow create, read, update: if true;
+      allow delete: if isAuthenticated();
+    }
+
+    // Payments - full access for authenticated users
+    match /payments/{paymentId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Settings - public read and write for system settings
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}

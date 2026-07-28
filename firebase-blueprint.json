@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "leads": {
+      "title": "Lead",
+      "description": "Potential clients from discovery calls or inquiries",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "source": { "type": "string", "enum": ["instagram", "whatsapp", "referral", "other"] },
+        "callDate": { "type": "string", "format": "date-time" },
+        "callNotes": { "type": "string" },
+        "status": { "type": "string", "enum": ["new", "called", "converted", "lost"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "phone", "status"]
+    },
+    "bookings": {
+      "title": "Booking",
+      "description": "Shoot bookings and contracts",
+      "type": "object",
+      "properties": {
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientEmail": { "type": "string" },
+        "clientPhone": { "type": "string" },
+        "service": { "type": "string" },
+        "shootDate": { "type": "string", "format": "date-time" },
+        "backupDate": { "type": "string", "format": "date-time" },
+        "location": { "type": "string" },
+        "specialRequirements": { "type": "string" },
+        "totalPrice": { "type": "number" },
+        "depositAmount": { "type": "number" },
+        "depositDeadline": { "type": "string", "format": "date-time" },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending_contract",
+            "contract_sent",
+            "contract_signed",
+            "deposit_pending",
+            "deposit_received",
+            "shoot_scheduled",
+            "delivered",
+            "completed"
+          ]
+        },
+        "contractUrl": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clientName", "clientEmail", "service", "status"]
+    },
+    "clients": {
+      "title": "Client",
+      "description": "Registered clients and booking history",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "source": { "type": "string" },
+        "totalBookings": { "type": "number" },
+        "isRepeatClient": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email"]
+    },
+    "services": {
+      "title": "Service",
+      "description": "Photography services offered by Vividel Inc.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "startingPrice": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["name", "startingPrice", "isActive"]
+    },
+    "payments": {
+      "title": "Payment",
+      "description": "Payment records for deposits and balances",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string" },
+        "clientId": { "type": "string" },
+        "type": { "type": "string", "enum": ["deposit", "balance"] },
+        "amount": { "type": "number" },
+        "method": { "type": "string", "enum": ["mobile_money", "bank_transfer", "card"] },
+        "status": { "type": "string", "enum": ["pending", "confirmed"] },
+        "confirmedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["bookingId", "amount", "type", "status"]
+    },
+    "settings": {
+      "title": "System Settings",
+      "description": "Studio configuration and payment details",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "calComLink": { "type": "string" },
+        "momoNumber": { "type": "string" },
+        "momoName": { "type": "string" },
+        "bankName": { "type": "string" },
+        "accountNumber": { "type": "string" },
+        "contractEmailTemplate": { "type": "string" },
+        "paymentEmailTemplate": { "type": "string" }
+      }
+    }
+  }
+}
