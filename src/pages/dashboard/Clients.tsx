@@ -65,7 +65,7 @@ export const Clients: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredClients.length === 0 ? (
-            <div className="col-span-full p-12 text-center text-xs text-[#BCA890]/40 border border-dashed border-[#554A32] rounded-xl">
+            <div className="col-span-full p-12 text-center text-xs text-[#8B96A0]/40 border border-dashed border-[#262D34] rounded-xl">
               No clients found.
             </div>
           ) : (
@@ -73,36 +73,36 @@ export const Clients: React.FC = () => {
               <Card
                 key={client.id}
                 onClick={() => handleOpenClient(client)}
-                className="space-y-4 hover:border-[#40E0D0]/60 transition-all cursor-pointer"
+                className="space-y-4 hover:border-[#2DD4BF]/60 transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-bold text-base text-[#E9E4DC]">{client.name}</h3>
-                    <p className="text-xs text-[#BCA890] mt-0.5">{client.email}</p>
+                    <h3 className="font-bold text-base text-[#F2F4F5]">{client.name}</h3>
+                    <p className="text-xs text-[#8B96A0] mt-0.5">{client.email}</p>
                   </div>
                   {client.isRepeatClient && (
-                    <span className="shrink-0 px-2.5 py-0.5 rounded-full bg-[#40E0D0]/15 border border-[#40E0D0]/40 text-[#40E0D0] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                    <span className="shrink-0 px-2.5 py-0.5 rounded-full bg-[#2DD4BF]/15 border border-[#2DD4BF]/40 text-[#2DD4BF] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
                       <UserCheck className="w-3 h-3" /> Repeat Client
                     </span>
                   )}
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[#554A32]">
-                  <div className="bg-[#2B2414] p-2.5 rounded-lg border border-[#554A32]">
-                    <span className="text-[#BCA890] text-[10px] block">Total Bookings</span>
-                    <span className="font-bold text-[#E9E4DC] text-sm">{client.totalBookings || 1}</span>
+                <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[#262D34]">
+                  <div className="bg-[#0A0D10] p-2.5 rounded-lg border border-[#262D34]">
+                    <span className="text-[#8B96A0] text-[10px] block">Total Bookings</span>
+                    <span className="font-bold text-[#F2F4F5] text-sm">{client.totalBookings || 1}</span>
                   </div>
 
-                  <div className="bg-[#2B2414] p-2.5 rounded-lg border border-[#554A32]">
-                    <span className="text-[#BCA890] text-[10px] block">Lifetime Value</span>
-                    <span className="font-bold text-[#40E0D0] text-sm">
+                  <div className="bg-[#0A0D10] p-2.5 rounded-lg border border-[#262D34]">
+                    <span className="text-[#8B96A0] text-[10px] block">Lifetime Value</span>
+                    <span className="font-bold text-[#2DD4BF] text-sm">
                       ${(client.totalSpend || 0).toLocaleString()}
                     </span>
                   </div>
                 </div>
 
-                <div className="text-[11px] text-[#BCA890] flex items-center gap-2">
-                  <Phone className="w-3 h-3 text-[#40E0D0]" /> {client.phone}
+                <div className="text-[11px] text-[#8B96A0] flex items-center gap-2">
+                  <Phone className="w-3 h-3 text-[#2DD4BF]" /> {client.phone}
                 </div>
               </Card>
             ))
@@ -119,29 +119,29 @@ export const Clients: React.FC = () => {
           maxWidth="lg"
         >
           <div className="space-y-6">
-            <div className="bg-[#352D1A] p-4 rounded-xl border border-[#554A32] flex flex-wrap items-center justify-between gap-4">
+            <div className="bg-[#10151A] p-4 rounded-xl border border-[#262D34] flex flex-wrap items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-lg text-[#E9E4DC]">{selectedClient.name}</h4>
+                  <h4 className="font-bold text-lg text-[#F2F4F5]">{selectedClient.name}</h4>
                   {selectedClient.isRepeatClient && (
-                    <span className="px-2 py-0.5 bg-[#40E0D0]/20 border border-[#40E0D0]/50 text-[#40E0D0] text-[10px] font-bold rounded-full uppercase">
+                    <span className="px-2 py-0.5 bg-[#2DD4BF]/20 border border-[#2DD4BF]/50 text-[#2DD4BF] text-[10px] font-bold rounded-full uppercase">
                       Repeat Client
                     </span>
                   )}
                 </div>
-                <div className="flex flex-wrap gap-3 text-xs text-[#BCA890]">
+                <div className="flex flex-wrap gap-3 text-xs text-[#8B96A0]">
                   <span className="flex items-center gap-1">
-                    <Mail className="w-3.5 h-3.5 text-[#40E0D0]" /> {selectedClient.email}
+                    <Mail className="w-3.5 h-3.5 text-[#2DD4BF]" /> {selectedClient.email}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Phone className="w-3.5 h-3.5 text-[#40E0D0]" /> {selectedClient.phone}
+                    <Phone className="w-3.5 h-3.5 text-[#2DD4BF]" /> {selectedClient.phone}
                   </span>
                 </div>
               </div>
 
               <div className="text-right">
-                <span className="text-xs text-[#BCA890] block">Total Spend</span>
-                <span className="text-xl font-bold font-serif text-[#40E0D0]">
+                <span className="text-xs text-[#8B96A0] block">Total Spend</span>
+                <span className="text-xl font-bold font-serif text-[#2DD4BF]">
                   ${(selectedClient.totalSpend || 0).toLocaleString()}
                 </span>
               </div>
@@ -149,26 +149,26 @@ export const Clients: React.FC = () => {
 
             {/* Bookings History */}
             <div className="space-y-3">
-              <h4 className="font-bold text-sm text-[#E9E4DC] flex items-center gap-2">
-                <Briefcase className="w-4 h-4 text-[#40E0D0]" /> Booking History ({clientBookings.length})
+              <h4 className="font-bold text-sm text-[#F2F4F5] flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-[#2DD4BF]" /> Booking History ({clientBookings.length})
               </h4>
 
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {clientBookings.length === 0 ? (
-                  <p className="text-xs text-[#BCA890]/60">No linked bookings recorded.</p>
+                  <p className="text-xs text-[#8B96A0]/60">No linked bookings recorded.</p>
                 ) : (
                   clientBookings.map((b) => (
                     <div
                       key={b.id}
-                      className="p-3 bg-[#2B2414] rounded-xl border border-[#554A32] flex items-center justify-between text-xs"
+                      className="p-3 bg-[#0A0D10] rounded-xl border border-[#262D34] flex items-center justify-between text-xs"
                     >
                       <div>
-                        <span className="font-semibold text-[#E9E4DC]">{b.service}</span>
-                        <p className="text-[11px] text-[#BCA890]">{b.shootDate}</p>
+                        <span className="font-semibold text-[#F2F4F5]">{b.service}</span>
+                        <p className="text-[11px] text-[#8B96A0]">{b.shootDate}</p>
                       </div>
                       <div className="text-right">
-                        <span className="font-bold text-[#40E0D0]">${b.totalPrice}</span>
-                        <p className="text-[10px] capitalize text-[#BCA890]/70">{b.status.replace(/_/g, ' ')}</p>
+                        <span className="font-bold text-[#2DD4BF]">${b.totalPrice}</span>
+                        <p className="text-[10px] capitalize text-[#8B96A0]/70">{b.status.replace(/_/g, ' ')}</p>
                       </div>
                     </div>
                   ))
@@ -178,19 +178,19 @@ export const Clients: React.FC = () => {
 
             {/* Notes Section */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold uppercase text-[#BCA890] flex items-center gap-1.5">
-                <MessageSquare className="w-3.5 h-3.5 text-[#40E0D0]" /> Client CRM Notes
+              <label className="block text-xs font-semibold uppercase text-[#8B96A0] flex items-center gap-1.5">
+                <MessageSquare className="w-3.5 h-3.5 text-[#2DD4BF]" /> Client CRM Notes
               </label>
               <textarea
                 rows={4}
                 value={clientNotes}
                 onChange={(e) => setClientNotes(e.target.value)}
                 placeholder="Preferred styling, communication style, special dates..."
-                className="w-full bg-[#2B2414] text-[#E9E4DC] border border-[#554A32] rounded-lg p-3 text-xs focus:border-[#40E0D0] focus:outline-none"
+                className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-3 text-xs focus:border-[#2DD4BF] focus:outline-none"
               />
             </div>
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-[#554A32]">
+            <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
               <Button variant="ghost" onClick={() => setSelectedClient(null)}>
                 Close
               </Button>

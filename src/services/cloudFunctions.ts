@@ -1,113 +1,72 @@
-import {
-  getBookingById,
-  updateBookingStatus,
-  updateBookingFields,
-  getSettings,
-  updateLead
-} from '../firebase/firestore';
-import { Booking, BookingStatus } from '../types';
+import { auth } from '../firebase/config';
+import { BookingStatus } from '../types';
 
-export const triggerOnNewBooking = async (booking: Booking, bookingId: string) => {
-  console.log('⚡ Cloud Function triggered: onNewBooking', { bookingId, clientName: booking.clientName });
-  
-  try {
-    const res = await fetch('/api/functions/onNewBooking', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ booking, bookingId })
-    });
-    if (!res.ok) {
-      console.warn('API route call failed, proceeding with client simulation fallback.');
-    }
-  } catch (err) {
-    console.warn('Client execution fallback for onNewBooking:', err);
+// These call the Vercel serverless functions in /api. onNewBooking and onStatusChange
+// replace what used to be Firestore-triggered Cloud Functions — since Vercel has no
+// trigger equivalent, every write that needs a notification side effect goes through
+// one of these endpoints instead of a direct Firestore write from the client.
+
+async function getIdToken(): Promise<string> {
+  const user = auth.currentUser;
+  if (!user) throw new Error('You must be signed in to do this.');
+  return user.getIdToken();
+}
+
+async function postJson<T>(url: string, body: unknown, authenticated: boolean): Promise<T> {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (authenticated) {
+    headers.Authorization = `Bearer ${await getIdToken()}`;
   }
-};
 
-export const triggerOnStatusChange = async (
+  const res = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data?.error || `Request to ${url} failed (${res.status}).`);
+  }
+  return data as T;
+}
+
+export interface NewBookingPayload {
+  fullName: string;
+  email: string;
+  phone: string;
+  service: string;
+  shootDate: string;
+  backupDate?: string;
+  location?: string;
+  specialRequirements?: string;
+  totalPrice: number;
+  depositAmount: number;
+  depositDeadline?: string;
+  // Pass an existing lead's id to mark it converted instead of creating a new lead.
+  leadId?: string;
+  // Set false for a manual dashboard booking with no associated lead.
+  createLead?: boolean;
+}
+
+interface NewBookingResult {
+  bookingId: string;
+  leadId: string | null;
+  clientId: string;
+}
+
+export const triggerOnNewBooking = (payload: NewBookingPayload) =>
+  postJson<NewBookingResult>('/api/onNewBooking', payload, false);
+
+interface StatusChangeResult {
+  ok: true;
+}
+
+export const triggerOnStatusChange = (
   bookingId: string,
-  oldStatus: BookingStatus,
-  newStatus: BookingStatus
-) => {
-  console.log(`⚡ Cloud Function triggered: onStatusChange from ${oldStatus} to ${newStatus}`, { bookingId });
+  newStatus: BookingStatus,
+  author?: string,
+  customLogTitle?: string
+) => postJson<StatusChangeResult>('/api/onStatusChange', { bookingId, newStatus, author, customLogTitle }, true);
 
-  try {
-    await fetch('/api/functions/onStatusChange', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bookingId, oldStatus, newStatus })
-    });
-  } catch (err) {
-    console.warn('Client execution fallback for onStatusChange:', err);
-  }
-};
+interface GenerateContractResult {
+  contractUrl: string;
+}
 
-export const generateContract = async (bookingId: string) => {
-  console.log(`⚡ Cloud Function triggered: generateContract for ${bookingId}`);
-
-  // Fetch booking
-  const booking = await getBookingById(bookingId);
-  if (!booking) throw new Error('Booking not found');
-
-  const settings = await getSettings();
-
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
-  const defaultContractUrl = `${origin}/contract/${bookingId}`;
-
-  let contractUrl = defaultContractUrl;
-
-  try {
-    const res = await fetch('/api/functions/generateContract', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bookingId, booking, settings, defaultContractUrl })
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      if (data.contractUrl) {
-        contractUrl = data.contractUrl;
-      }
-    }
-  } catch (err) {
-    console.warn('API call failed, using in-app contract signature portal:', err);
-  }
-
-  if (!contractUrl || contractUrl.includes('docuseal.co/d/')) {
-    contractUrl = defaultContractUrl;
-  }
-
-  // Compile contract email template
-  const rawTemplate =
-    settings.contractEmailTemplate ||
-    'Hello {clientName},\n\nYour shoot contract for {service} on {shootDate} is ready for review and e-signature.\n\nPlease review and sign using the link below:\n{contractUrl}\n\nWarm regards,\nJames Akabo Jnr\nVividel Inc.';
-
-  const emailSubject = `Contract Agreement for ${booking.service} — Vividel Inc.`;
-  const emailBody = rawTemplate
-    .replace(/{clientName}/g, booking.clientName)
-    .replace(/{service}/g, booking.service)
-    .replace(/{shootDate}/g, booking.shootDate)
-    .replace(/{contractUrl}/g, contractUrl);
-
-  // Update booking
-  await updateBookingFields(bookingId, {
-    contractUrl,
-    status: 'contract_sent'
-  });
-
-  await updateBookingStatus(
-    bookingId,
-    'contract_sent',
-    'DocuSeal Integration',
-    `Generated Contract & Dispatched Link to ${booking.clientEmail}`
-  );
-
-  return {
-    contractUrl,
-    emailSubject,
-    emailBody,
-    clientEmail: booking.clientEmail,
-    clientName: booking.clientName,
-    clientPhone: booking.clientPhone
-  };
-};
+export const generateContract = (bookingId: string) =>
+  postJson<GenerateContractResult>('/api/generateContract', { bookingId }, true);

@@ -100,43 +100,43 @@ export const Services: React.FC = () => {
             <Card
               key={service.id}
               className={`space-y-4 border-l-4 ${
-                service.isActive ? 'border-l-[#40E0D0]' : 'border-l-gray-600 opacity-60'
+                service.isActive ? 'border-l-[#2DD4BF]' : 'border-l-gray-600 opacity-60'
               }`}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="font-bold text-lg text-[#E9E4DC] font-serif">{service.name}</h3>
+                    <h3 className="font-bold text-lg text-[#F2F4F5] font-serif">{service.name}</h3>
                     <span
                       className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
                         service.isActive
-                          ? 'bg-[#585D27]/30 border-[#585D27] text-[#A2AC48]'
+                          ? 'bg-[#059669]/30 border-[#059669] text-[#34D399]'
                           : 'bg-gray-500/15 border-gray-500/30 text-gray-400'
                       }`}
                     >
                       {service.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </div>
-                  <p className="text-xs text-[#BCA890] mt-1 leading-relaxed">
+                  <p className="text-xs text-[#8B96A0] mt-1 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="text-[10px] uppercase text-[#BCA890]/60 block">Starting At</span>
-                  <span className="text-xl font-bold text-[#40E0D0] font-serif">
+                  <span className="text-[10px] uppercase text-[#8B96A0]/60 block">Starting At</span>
+                  <span className="text-xl font-bold text-[#2DD4BF] font-serif">
                     ${service.startingPrice?.toLocaleString()}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-[#554A32]">
+              <div className="flex items-center justify-between pt-3 border-t border-[#262D34]">
                 <button
                   onClick={() => handleToggleActive(service)}
                   className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${
                     service.isActive
                       ? 'border-rose-500/30 text-rose-300 hover:bg-rose-500/10'
-                      : 'border-[#585D27] text-[#A2AC48] hover:bg-[#585D27]/20'
+                      : 'border-[#059669] text-[#34D399] hover:bg-[#059669]/20'
                   }`}
                 >
                   {service.isActive ? 'Deactivate Package' : 'Activate Package'}
@@ -172,12 +172,12 @@ export const Services: React.FC = () => {
           />
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-[#F5F0E8]/70">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-[#F2F4F5]/70">
               Service Description
             </label>
             <textarea
               rows={3}
-              className="w-full bg-[#1A1A2E] text-[#F5F0E8] border border-[#2A2A42] rounded-lg p-2.5 text-sm focus:border-[#C9A84C] focus:outline-none"
+              className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-2.5 text-sm focus:border-[#2DD4BF] focus:outline-none"
               placeholder="What is included in this package..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -197,12 +197,12 @@ export const Services: React.FC = () => {
               type="checkbox"
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
-              className="w-4 h-4 accent-[#C9A84C] rounded"
+              className="w-4 h-4 accent-[#2DD4BF] rounded"
             />
-            <span className="text-xs text-[#F5F0E8]">Show in Client Booking Form (/book)</span>
+            <span className="text-xs text-[#F2F4F5]">Show in Client Booking Form (/book)</span>
           </label>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-[#2A2A42]">
+          <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
             <Button variant="ghost" type="button" onClick={() => setIsAddModalOpen(false)}>
               Cancel
             </Button>

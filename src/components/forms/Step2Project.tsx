@@ -33,9 +33,9 @@ export const Step2Project: React.FC<Step2Props> = ({
 
   return (
     <div className="space-y-5 animate-fade-in">
-      <div className="border-b border-[#2A2A42] pb-4">
-        <h2 className="text-xl font-bold text-[#F5F0E8]">Step 2: Project Details</h2>
-        <p className="text-sm text-[#F5F0E8]/60 mt-1">
+      <div className="border-b border-[#262D34] pb-4">
+        <h2 className="text-xl font-bold text-[#F2F4F5]">Step 2: Project Details</h2>
+        <p className="text-sm text-[#F2F4F5]/60 mt-1">
           Tell us about the shoot details you agreed upon during your call.
         </p>
       </div>
@@ -77,12 +77,12 @@ export const Step2Project: React.FC<Step2Props> = ({
       />
 
       <div className="space-y-1.5">
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#F5F0E8]/70">
+        <label className="block text-xs font-semibold uppercase tracking-wider text-[#F2F4F5]/70">
           Special Requirements or Notes
         </label>
         <textarea
           rows={3}
-          className="w-full bg-[#1A1A2E] text-[#F5F0E8] placeholder-[#F5F0E8]/30 border border-[#2A2A42] rounded-lg p-3 text-sm focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C] transition-all"
+          className="w-full bg-[#0A0D10] text-[#F2F4F5] placeholder-[#F2F4F5]/30 border border-[#262D34] rounded-lg p-3 text-sm focus:outline-none focus:border-[#2DD4BF] focus:ring-1 focus:ring-[#2DD4BF] transition-all"
           placeholder="Specific mood boards, brand guidelines, lighting requirements, or schedule..."
           value={data.specialRequirements}
           onChange={(e) => onChange('specialRequirements', e.target.value)}

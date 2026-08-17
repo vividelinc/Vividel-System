@@ -81,7 +81,7 @@ export const Overview: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <Card className="border-l-4 border-l-blue-500">
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-wider font-semibold text-[#F5F0E8]/60">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#F2F4F5]/60">
                 New Leads (This Week)
               </span>
               <div className="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400">
@@ -89,16 +89,16 @@ export const Overview: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-[#F5F0E8] font-serif">
+              <span className="text-3xl font-bold text-[#F2F4F5] font-serif">
                 {newLeadsThisWeek}
               </span>
-              <span className="text-xs text-[#F5F0E8]/50">inquiries</span>
+              <span className="text-xs text-[#F2F4F5]/50">inquiries</span>
             </div>
           </Card>
 
           <Card className="border-l-4 border-l-amber-500">
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-wider font-semibold text-[#F5F0E8]/60">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#F2F4F5]/60">
                 Awaiting Contract
               </span>
               <div className="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center text-amber-400">
@@ -106,16 +106,16 @@ export const Overview: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-[#F5F0E8] font-serif">
+              <span className="text-3xl font-bold text-[#F2F4F5] font-serif">
                 {awaitingContractCount}
               </span>
-              <span className="text-xs text-[#F5F0E8]/50">contracts pending</span>
+              <span className="text-xs text-[#F2F4F5]/50">contracts pending</span>
             </div>
           </Card>
 
           <Card className="border-l-4 border-l-purple-500">
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-wider font-semibold text-[#F5F0E8]/60">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#F2F4F5]/60">
                 Shoots This Month
               </span>
               <div className="w-8 h-8 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400">
@@ -123,27 +123,27 @@ export const Overview: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-[#F5F0E8] font-serif">
+              <span className="text-3xl font-bold text-[#F2F4F5] font-serif">
                 {upcomingShootsThisMonth}
               </span>
-              <span className="text-xs text-[#F5F0E8]/50">scheduled</span>
+              <span className="text-xs text-[#F2F4F5]/50">scheduled</span>
             </div>
           </Card>
 
-          <Card className="border-l-4 border-l-[#40E0D0]">
+          <Card className="border-l-4 border-l-[#2DD4BF]">
             <div className="flex items-center justify-between">
-              <span className="text-xs uppercase tracking-wider font-semibold text-[#BCA890]">
+              <span className="text-xs uppercase tracking-wider font-semibold text-[#8B96A0]">
                 Pending Payments
               </span>
-              <div className="w-8 h-8 rounded-lg bg-[#40E0D0]/15 flex items-center justify-center text-[#40E0D0]">
+              <div className="w-8 h-8 rounded-lg bg-[#2DD4BF]/15 flex items-center justify-center text-[#2DD4BF]">
                 <DollarSign className="w-4 h-4" />
               </div>
             </div>
             <div className="mt-3 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-[#E9E4DC] font-serif">
+              <span className="text-3xl font-bold text-[#F2F4F5] font-serif">
                 {pendingPaymentsCount}
               </span>
-              <span className="text-xs text-[#BCA890]">deposits pending</span>
+              <span className="text-xs text-[#8B96A0]">deposits pending</span>
             </div>
           </Card>
         </div>
@@ -153,8 +153,8 @@ export const Overview: React.FC = () => {
           {/* Recent Bookings List */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold font-serif text-[#E9E4DC] flex items-center gap-2">
-                <CalendarCheck className="w-5 h-5 text-[#40E0D0]" /> Recent Bookings
+              <h2 className="text-lg font-bold font-serif text-[#F2F4F5] flex items-center gap-2">
+                <CalendarCheck className="w-5 h-5 text-[#2DD4BF]" /> Recent Bookings
               </h2>
               <Button
                 variant="ghost"
@@ -166,9 +166,9 @@ export const Overview: React.FC = () => {
               </Button>
             </div>
 
-            <Card className="p-0 overflow-hidden divide-y divide-[#554A32]">
+            <Card className="p-0 overflow-hidden divide-y divide-[#262D34]">
               {recentBookings.length === 0 ? (
-                <div className="p-8 text-center text-xs text-[#BCA890]">
+                <div className="p-8 text-center text-xs text-[#8B96A0]">
                   No bookings registered yet. Share your booking link to receive requests.
                 </div>
               ) : (
@@ -176,26 +176,26 @@ export const Overview: React.FC = () => {
                   <div
                     key={b.id}
                     onClick={() => navigate(`/dashboard/bookings/${b.id}`)}
-                    className="p-4 hover:bg-[#554A32]/40 transition-colors cursor-pointer flex items-center justify-between gap-4"
+                    className="p-4 hover:bg-[#262D34]/40 transition-colors cursor-pointer flex items-center justify-between gap-4"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm text-[#E9E4DC]">
+                        <span className="font-semibold text-sm text-[#F2F4F5]">
                           {b.clientName}
                         </span>
                         <Badge status={b.status} size="sm" />
                       </div>
-                      <p className="text-xs text-[#BCA890]">
-                        {b.service} • <span className="text-[#40E0D0] font-semibold">${b.totalPrice?.toLocaleString()}</span>
+                      <p className="text-xs text-[#8B96A0]">
+                        {b.service} • <span className="text-[#2DD4BF] font-semibold">${b.totalPrice?.toLocaleString()}</span>
                       </p>
                     </div>
 
                     <div className="text-right text-xs shrink-0">
-                      <div className="flex items-center gap-1 text-[#E9E4DC]/80">
-                        <Calendar className="w-3.5 h-3.5 text-[#40E0D0]" />
+                      <div className="flex items-center gap-1 text-[#F2F4F5]/80">
+                        <Calendar className="w-3.5 h-3.5 text-[#2DD4BF]" />
                         {b.shootDate ? new Date(b.shootDate).toLocaleDateString() : 'TBD'}
                       </div>
-                      <span className="text-[10px] text-[#BCA890] block mt-1">
+                      <span className="text-[10px] text-[#8B96A0] block mt-1">
                         {b.location || 'Accra, Ghana'}
                       </span>
                     </div>
@@ -207,14 +207,14 @@ export const Overview: React.FC = () => {
 
           {/* Quick Actions & Cal.com Embed CTA */}
           <div className="space-y-6">
-            <Card className="space-y-4 border-[#40E0D0]/30 bg-gradient-to-b from-[#3E3521] to-[#2B2414]">
+            <Card className="space-y-4 border-[#2DD4BF]/30 bg-gradient-to-b from-[#171D23] to-[#0A0D10]">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-[#40E0D0]/20 border border-[#40E0D0]/40 flex items-center justify-center text-[#40E0D0]">
+                <div className="w-8 h-8 rounded-lg bg-[#2DD4BF]/20 border border-[#2DD4BF]/40 flex items-center justify-center text-[#2DD4BF]">
                   <Layers className="w-4 h-4" />
                 </div>
-                <h3 className="font-bold text-sm text-[#E9E4DC]">Share Booking Form</h3>
+                <h3 className="font-bold text-sm text-[#F2F4F5]">Share Booking Form</h3>
               </div>
-              <p className="text-xs text-[#BCA890] leading-relaxed">
+              <p className="text-xs text-[#8B96A0] leading-relaxed">
                 Direct post-discovery call clients to the digital booking portal to capture project details and trigger contracts.
               </p>
               <Button
@@ -229,17 +229,17 @@ export const Overview: React.FC = () => {
             </Card>
 
             <Card className="space-y-3">
-              <h3 className="font-bold text-sm text-[#E9E4DC] flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-[#40E0D0]" /> Cal.com Discovery Scheduling
+              <h3 className="font-bold text-sm text-[#F2F4F5] flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-[#2DD4BF]" /> Cal.com Discovery Scheduling
               </h3>
-              <p className="text-xs text-[#BCA890]">
+              <p className="text-xs text-[#8B96A0]">
                 Discovery call scheduling is handled directly via Cal.com before sending clients to the booking portal.
               </p>
               <a
                 href={calComLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 text-xs text-[#40E0D0] bg-[#40E0D0]/10 border border-[#40E0D0]/30 hover:bg-[#40E0D0]/20 w-full py-2 rounded-lg font-medium transition-all"
+                className="inline-flex items-center justify-center gap-2 text-xs text-[#2DD4BF] bg-[#2DD4BF]/10 border border-[#2DD4BF]/30 hover:bg-[#2DD4BF]/20 w-full py-2 rounded-lg font-medium transition-all"
               >
                 Launch Cal.com Calendar <ExternalLink className="w-3.5 h-3.5" />
               </a>

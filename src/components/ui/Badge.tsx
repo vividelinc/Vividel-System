@@ -11,31 +11,31 @@ export const Badge: React.FC<BadgeProps> = ({ status, size = 'md' }) => {
     switch (st) {
       // Lead statuses
       case 'new':
-        return 'bg-[#40E0D0]/20 text-[#40E0D0] border-[#40E0D0]/40';
+        return 'bg-[#2DD4BF]/20 text-[#2DD4BF] border-[#2DD4BF]/40';
       case 'called':
-        return 'bg-[#BCA890]/20 text-[#BCA890] border-[#BCA890]/40';
+        return 'bg-slate-500/15 text-slate-300 border-slate-500/30';
       case 'converted':
-        return 'bg-[#585D27]/30 text-[#A2AC48] border-[#585D27]/60';
+        return 'bg-[#059669]/30 text-[#34D399] border-[#059669]/60';
       case 'lost':
-        return 'bg-[#775B45]/25 text-[#D19D7A] border-[#775B45]/50';
+        return 'bg-rose-500/15 text-rose-300 border-rose-500/30';
 
       // Booking statuses
       case 'pending_contract':
-        return 'bg-[#775B45]/30 text-[#E3B08B] border-[#775B45]/60';
+        return 'bg-slate-500/15 text-slate-300 border-slate-500/30';
       case 'contract_sent':
         return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
       case 'contract_signed':
-        return 'bg-[#40E0D0]/20 text-[#40E0D0] border-[#40E0D0]/40';
+        return 'bg-[#2DD4BF]/20 text-[#2DD4BF] border-[#2DD4BF]/40';
       case 'deposit_pending':
-        return 'bg-[#BCA890]/25 text-[#E9E4DC] border-[#BCA890]/50';
+        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
       case 'deposit_received':
-        return 'bg-[#585D27]/30 text-[#A2AC48] border-[#585D27]/60';
+        return 'bg-[#059669]/30 text-[#34D399] border-[#059669]/60';
       case 'shoot_scheduled':
-        return 'bg-[#00CED1]/20 text-[#40E0D0] border-[#00CED1]/40';
+        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30';
       case 'delivered':
-        return 'bg-[#585D27]/25 text-[#A2AC48] border-[#585D27]/50';
+        return 'bg-[#059669]/25 text-[#34D399] border-[#059669]/50';
       case 'completed':
-        return 'bg-[#40E0D0]/25 text-[#40E0D0] border-[#40E0D0]/60 font-semibold';
+        return 'bg-[#2DD4BF]/25 text-[#2DD4BF] border-[#2DD4BF]/60 font-semibold';
 
       default:
         return 'bg-gray-500/15 text-gray-300 border-gray-500/30';

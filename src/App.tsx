@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { BookingForm } from './pages/BookingForm';
-import { ContractView } from './pages/ContractView';
 import { Login } from './pages/Login';
 import { DashboardLayout } from './pages/dashboard/DashboardLayout';
 import { Overview } from './pages/dashboard/Overview';
@@ -20,9 +19,6 @@ export default function App() {
         <Routes>
           {/* Public Client Booking Form */}
           <Route path="/book" element={<BookingForm />} />
-
-          {/* Public e-Signature Contract View */}
-          <Route path="/contract/:id" element={<ContractView />} />
 
           {/* Authentication */}
           <Route path="/login" element={<Login />} />

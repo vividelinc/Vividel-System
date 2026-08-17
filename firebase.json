@@ -1,0 +1,7 @@
+{
+  "firestore": {
+    "database": "ai-studio-vividelinc-5e594657-66dc-41d1-8887-f0c615ca0bfd",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

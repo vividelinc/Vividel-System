@@ -34,35 +34,35 @@ export const Step3Confirmation: React.FC<Step3Props> = ({
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="border-b border-[#2A2A42] pb-4">
-        <h2 className="text-xl font-bold text-[#F5F0E8]">Step 3: Review & Confirm</h2>
-        <p className="text-sm text-[#F5F0E8]/60 mt-1">
+      <div className="border-b border-[#262D34] pb-4">
+        <h2 className="text-xl font-bold text-[#F2F4F5]">Step 3: Review & Confirm</h2>
+        <p className="text-sm text-[#F2F4F5]/60 mt-1">
           Review your shoot details before submitting to Vividel Inc.
         </p>
       </div>
 
-      <div className="bg-[#1A1A2E] border border-[#2A2A42] rounded-xl p-5 space-y-4">
+      <div className="bg-[#0A0D10] border border-[#262D34] rounded-xl p-5 space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Client Name</span>
-            <span className="text-[#F5F0E8] font-medium flex items-center gap-1.5 mt-0.5">
-              <User className="w-3.5 h-3.5 text-[#C9A84C]" /> {data.fullName}
+            <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Client Name</span>
+            <span className="text-[#F2F4F5] font-medium flex items-center gap-1.5 mt-0.5">
+              <User className="w-3.5 h-3.5 text-[#2DD4BF]" /> {data.fullName}
             </span>
           </div>
 
           <div>
-            <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Email & Phone</span>
-            <span className="text-[#F5F0E8] font-medium flex items-center gap-1.5 mt-0.5">
-              <Mail className="w-3.5 h-3.5 text-[#C9A84C]" /> {data.email} | {data.phone}
+            <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Email & Phone</span>
+            <span className="text-[#F2F4F5] font-medium flex items-center gap-1.5 mt-0.5">
+              <Mail className="w-3.5 h-3.5 text-[#2DD4BF]" /> {data.email} | {data.phone}
             </span>
           </div>
 
           <div>
-            <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Service</span>
-            <span className="text-[#F5F0E8] font-medium flex items-center gap-1.5 mt-0.5">
-              <Camera className="w-3.5 h-3.5 text-[#C9A84C]" /> {data.service}
+            <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Service</span>
+            <span className="text-[#F2F4F5] font-medium flex items-center gap-1.5 mt-0.5">
+              <Camera className="w-3.5 h-3.5 text-[#2DD4BF]" /> {data.service}
               {selectedServiceObj && (
-                <span className="text-[#C9A84C] text-xs font-semibold">
+                <span className="text-[#2DD4BF] text-xs font-semibold">
                   (From ${selectedServiceObj.startingPrice.toLocaleString()})
                 </span>
               )}
@@ -70,24 +70,24 @@ export const Step3Confirmation: React.FC<Step3Props> = ({
           </div>
 
           <div>
-            <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Shoot Date</span>
-            <span className="text-[#F5F0E8] font-medium flex items-center gap-1.5 mt-0.5">
-              <Calendar className="w-3.5 h-3.5 text-[#C9A84C]" /> {data.shootDate}
-              {data.backupDate && <span className="text-[#F5F0E8]/50 text-xs">(Backup: {data.backupDate})</span>}
+            <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Shoot Date</span>
+            <span className="text-[#F2F4F5] font-medium flex items-center gap-1.5 mt-0.5">
+              <Calendar className="w-3.5 h-3.5 text-[#2DD4BF]" /> {data.shootDate}
+              {data.backupDate && <span className="text-[#F2F4F5]/50 text-xs">(Backup: {data.backupDate})</span>}
             </span>
           </div>
 
           <div className="md:col-span-2">
-            <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Location</span>
-            <span className="text-[#F5F0E8] font-medium flex items-center gap-1.5 mt-0.5">
-              <MapPin className="w-3.5 h-3.5 text-[#C9A84C]" /> {data.location}
+            <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Location</span>
+            <span className="text-[#F2F4F5] font-medium flex items-center gap-1.5 mt-0.5">
+              <MapPin className="w-3.5 h-3.5 text-[#2DD4BF]" /> {data.location}
             </span>
           </div>
 
           {data.specialRequirements && (
-            <div className="md:col-span-2 border-t border-[#2A2A42] pt-3 mt-1">
-              <span className="text-[#F5F0E8]/50 block text-xs uppercase font-semibold">Special Requirements</span>
-              <p className="text-[#F5F0E8]/90 text-xs mt-1 bg-[#22223B]/60 p-2.5 rounded-lg border border-[#2A2A42]">
+            <div className="md:col-span-2 border-t border-[#262D34] pt-3 mt-1">
+              <span className="text-[#F2F4F5]/50 block text-xs uppercase font-semibold">Special Requirements</span>
+              <p className="text-[#F2F4F5]/90 text-xs mt-1 bg-[#171D23]/60 p-2.5 rounded-lg border border-[#262D34]">
                 {data.specialRequirements}
               </p>
             </div>
@@ -95,16 +95,16 @@ export const Step3Confirmation: React.FC<Step3Props> = ({
         </div>
       </div>
 
-      <div className="space-y-3 bg-[#22223B]/40 p-4 rounded-xl border border-[#C9A84C]/30">
+      <div className="space-y-3 bg-[#171D23]/40 p-4 rounded-xl border border-[#2DD4BF]/30">
         <label className="flex items-start gap-3 cursor-pointer">
           <input
             type="checkbox"
             checked={data.termsAgreed}
             onChange={(e) => onChange('termsAgreed', e.target.checked)}
-            className="mt-1 w-4 h-4 accent-[#C9A84C] rounded bg-[#1A1A2E] border-[#2A2A42]"
+            className="mt-1 w-4 h-4 accent-[#2DD4BF] rounded bg-[#0A0D10] border-[#262D34]"
           />
-          <span className="text-xs text-[#F5F0E8]/90 leading-relaxed">
-            I confirm I have discussed and agreed terms with <strong className="text-[#C9A84C]">James Akabo Jnr</strong> at Vividel Inc.
+          <span className="text-xs text-[#F2F4F5]/90 leading-relaxed">
+            I confirm I have discussed and agreed terms with <strong className="text-[#2DD4BF]">James Akabo Jnr</strong> at Vividel Inc.
           </span>
         </label>
         {errors.termsAgreed && <p className="text-xs text-rose-400 pl-7">{errors.termsAgreed}</p>}

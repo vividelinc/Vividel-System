@@ -15,9 +15,9 @@ interface Step1Props {
 export const Step1Personal: React.FC<Step1Props> = ({ data, onChange, errors }) => {
   return (
     <div className="space-y-5 animate-fade-in">
-      <div className="border-b border-[#2A2A42] pb-4">
-        <h2 className="text-xl font-bold text-[#F5F0E8]">Step 1: Personal Details</h2>
-        <p className="text-sm text-[#F5F0E8]/60 mt-1">
+      <div className="border-b border-[#262D34] pb-4">
+        <h2 className="text-xl font-bold text-[#F2F4F5]">Step 1: Personal Details</h2>
+        <p className="text-sm text-[#F2F4F5]/60 mt-1">
           Please provide your contact information so James can link your booking.
         </p>
       </div>

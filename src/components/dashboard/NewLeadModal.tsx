@@ -90,19 +90,19 @@ export const NewLeadModal: React.FC<NewLeadModalProps> = ({ isOpen, onClose }) =
         />
 
         <div className="space-y-1.5">
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#F5F0E8]/70">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-[#F2F4F5]/70">
             Initial Call Notes
           </label>
           <textarea
             rows={3}
-            className="w-full bg-[#1A1A2E] text-[#F5F0E8] border border-[#2A2A42] rounded-lg p-2.5 text-sm focus:border-[#C9A84C] focus:outline-none"
+            className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-2.5 text-sm focus:border-[#2DD4BF] focus:outline-none"
             placeholder="Key notes from initial call..."
             value={callNotes}
             onChange={(e) => setCallNotes(e.target.value)}
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#2A2A42]">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
           <Button variant="ghost" type="button" onClick={onClose}>
             Cancel
           </Button>

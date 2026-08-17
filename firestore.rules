@@ -6,37 +6,40 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    // Services - public read and write so default services can be initialized
+    // Services - public read (booking form dropdown); only James (authenticated) can manage
+    // the catalog.
     match /services/{serviceId} {
-      allow read, write: if true;
+      allow read: if true;
+      allow write: if isAuthenticated();
     }
 
-    // Leads - public create for prospective clients, full access for authenticated users
+    // Leads - dashboard only. The public booking form never writes here directly — it goes
+    // through POST /api/onNewBooking, which uses the Admin SDK (bypasses these rules).
     match /leads/{leadId} {
-      allow create: if true;
-      allow read, update, delete: if isAuthenticated();
+      allow read, write: if isAuthenticated();
     }
 
-    // Bookings - public create for client booking form, full access for authenticated users
+    // Bookings - dashboard only, same reasoning. Creation, contract generation, and status
+    // transitions are all owned by the Vercel API routes (Admin SDK).
     match /bookings/{bookingId} {
-      allow create: if true;
-      allow read, update, delete: if isAuthenticated();
+      allow read, write: if isAuthenticated();
     }
 
-    // Clients - public create or update during booking, full access for authenticated users
+    // Clients - dashboard only. Created/updated server-side by /api/onNewBooking.
     match /clients/{clientId} {
-      allow create, read, update: if true;
-      allow delete: if isAuthenticated();
+      allow read, write: if isAuthenticated();
     }
 
-    // Payments - full access for authenticated users
+    // Payments - dashboard only
     match /payments/{paymentId} {
       allow read, write: if isAuthenticated();
     }
 
-    // Settings - public read and write for system settings
+    // Settings - public read (booking form needs the Cal.com link; API routes read payment
+    // details); only James (authenticated) can edit them.
     match /settings/{settingId} {
-      allow read, write: if true;
+      allow read: if true;
+      allow write: if isAuthenticated();
     }
   }
 }

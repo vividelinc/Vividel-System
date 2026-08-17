@@ -93,6 +93,7 @@ export interface Payment {
 export interface SystemSettings {
   displayName: string;
   email: string;
+  ownerPhone: string;
   calComLink: string;
   momoNumber: string;
   momoName: string;

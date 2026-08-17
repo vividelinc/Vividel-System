@@ -3,8 +3,8 @@ import { Modal } from '../ui/Modal';
 import { Input } from '../ui/Input';
 import { Select } from '../ui/Select';
 import { Button } from '../ui/Button';
-import { Lead, PhotographyService, BookingStatus } from '../../types';
-import { createBookingRequest, updateLead, subscribeToActiveServices } from '../../firebase/firestore';
+import { Lead, PhotographyService } from '../../types';
+import { subscribeToActiveServices } from '../../firebase/firestore';
 import { triggerOnNewBooking } from '../../services/cloudFunctions';
 
 interface NewBookingModalProps {
@@ -29,7 +29,6 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
   const [depositAmount, setDepositAmount] = useState<number>(500);
   const [depositDeadline, setDepositDeadline] = useState('');
   const [specialRequirements, setSpecialRequirements] = useState('');
-  const [status, setStatus] = useState<BookingStatus>('pending_contract');
   const [services, setServices] = useState<PhotographyService[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -71,10 +70,12 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
 
     setIsSubmitting(true);
     try {
-      const bookingData = {
-        clientName,
-        clientEmail,
-        clientPhone,
+      // POST /api/onNewBooking creates the booking (+ client, + lead unless
+      // converting an existing one) and sends the notification emails/SMS.
+      await triggerOnNewBooking({
+        fullName: clientName,
+        email: clientEmail,
+        phone: clientPhone,
         service,
         shootDate,
         backupDate,
@@ -83,19 +84,9 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
         totalPrice: Number(totalPrice),
         depositAmount: Number(depositAmount),
         depositDeadline,
-        status,
-        createdAt: new Date().toISOString()
-      };
-
-      const result = await createBookingRequest(bookingData);
-
-      // Trigger Cloud Function notification
-      await triggerOnNewBooking(bookingData as any, result.id);
-
-      // If prefilled from lead, update lead status to converted
-      if (prefillLead && prefillLead.id) {
-        await updateLead(prefillLead.id, { status: 'converted' });
-      }
+        leadId: prefillLead?.id,
+        createLead: !prefillLead
+      });
 
       setIsSubmitting(false);
       onClose();
@@ -104,13 +95,6 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
       setIsSubmitting(false);
     }
   };
-
-  const statusOptions = [
-    { value: 'pending_contract', label: 'Pending Contract' },
-    { value: 'contract_sent', label: 'Contract Sent' },
-    { value: 'deposit_pending', label: 'Deposit Pending' },
-    { value: 'shoot_scheduled', label: 'Shoot Scheduled' }
-  ];
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Create New Booking" maxWidth="lg">
@@ -138,20 +122,12 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Select
-            label="Service"
-            options={services.map((s) => ({ value: s.name, label: `${s.name} ($${s.startingPrice})` }))}
-            value={service}
-            onChange={(e) => handleServiceChange(e.target.value)}
-          />
-          <Select
-            label="Initial Status"
-            options={statusOptions}
-            value={status}
-            onChange={(e) => setStatus(e.target.value as BookingStatus)}
-          />
-        </div>
+        <Select
+          label="Service"
+          options={services.map((s) => ({ value: s.name, label: `${s.name} ($${s.startingPrice})` }))}
+          value={service}
+          onChange={(e) => handleServiceChange(e.target.value)}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Input
@@ -198,18 +174,18 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#BCA890]">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-[#8B96A0]">
             Special Requirements / Internal Notes
           </label>
           <textarea
             rows={2}
-            className="w-full bg-[#2B2414] text-[#E9E4DC] border border-[#554A32] rounded-lg p-2.5 text-sm focus:border-[#40E0D0] focus:outline-none"
+            className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-2.5 text-sm focus:border-[#2DD4BF] focus:outline-none"
             value={specialRequirements}
             onChange={(e) => setSpecialRequirements(e.target.value)}
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#554A32]">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
           <Button variant="ghost" type="button" onClick={onClose}>
             Cancel
           </Button>
