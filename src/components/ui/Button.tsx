@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
     primary:
       'bg-primary text-primary-foreground hover:bg-primary-strong shadow-elevation-2 font-semibold',
     secondary:
-      'bg-surface-2 text-on-surface hover:bg-surface-3 border border-outline font-semibold',
+      'bg-secondary-soft text-secondary-strong hover:bg-secondary/25 border border-secondary/30 font-semibold',
     outline:
       'border border-primary/70 bg-transparent text-primary hover:bg-primary-soft font-semibold',
     danger:

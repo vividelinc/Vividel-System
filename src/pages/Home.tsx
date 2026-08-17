@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button';
 import { PortfolioGrid } from '../components/gallery/PortfolioGrid';
 import { Lightbox } from '../components/gallery/Lightbox';
 import { featuredPortfolioItems, portfolioItems, type PortfolioItem } from '../data/portfolio';
-import { services, testimonials } from '../data/siteContent';
+import { DISCOVERY_CALL_URL, services, testimonials } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
 
 export default function Home() {
@@ -13,8 +13,8 @@ export default function Home() {
 
   useEffect(() => {
     setPageMeta(
-      'Vividel Studio | Commercial, Brand & Product Photography',
-      'Professional photography for commercial events, brand campaigns, and product catalogs.'
+      'Vividel Inc. | Commercial, Brand & Product Photography',
+      'Ghana-based commercial and event photography studio delivering high-impact visuals for brands internationally.'
     );
   }, []);
 
@@ -43,15 +43,15 @@ export default function Home() {
               Professional photography for brands that mean business.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-on-surface-variant">
-              Vividel Studio delivers commercial event coverage, brand photography, and product photography with a fast, reliable turnaround.
+              Vividel Inc. delivers commercial event coverage, brand photography, and product photography with a fast, reliable turnaround.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link to="/book">
+              <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
                 <Button variant="primary" size="lg">
-                  Book Now
+                  Book a Discovery Call
                 </Button>
-              </Link>
+              </a>
               <Link to="/portfolio">
                 <Button variant="outline" size="lg">
                   View Portfolio
@@ -142,11 +142,11 @@ export default function Home() {
             Tell us about your event, brand, or product line and we’ll put together a coverage plan that fits your timeline.
           </p>
           <div className="mt-8 flex justify-center">
-            <Link to="/book">
+            <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
               <Button variant="primary" size="lg">
-                Book your session
+                Book a Discovery Call
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { setPageMeta } from '../lib/pageMeta';
 
 export default function TestimonialsPage() {
   useEffect(() => {
-    setPageMeta('Testimonials | Vividel Studio', 'Client feedback on commercial event, brand, and product photography work.');
+    setPageMeta('Testimonials | Vividel Inc.', 'Client feedback on commercial event, brand, and product photography work.');
   }, []);
 
   return (

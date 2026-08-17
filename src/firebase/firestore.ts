@@ -125,7 +125,7 @@ const DEFAULT_SETTINGS: SystemSettings = {
   displayName: 'James Akabo Jnr',
   email: 'vividelinc@gmail.com',
   ownerPhone: '',
-  calComLink: 'https://cal.com/vividel',
+  calComLink: 'https://cal.com/vividel-inc/30min?overlayCalendar=true',
   momoNumber: '',
   momoName: '',
   bankName: '',

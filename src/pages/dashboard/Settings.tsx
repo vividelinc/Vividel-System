@@ -14,7 +14,7 @@ export const Settings: React.FC = () => {
     displayName: 'James Akabo Jnr',
     email: 'vividelinc@gmail.com',
     ownerPhone: '',
-    calComLink: 'https://cal.com/vividel',
+    calComLink: 'https://cal.com/vividel-inc/30min?overlayCalendar=true',
     momoNumber: '+233 24 123 4567',
     momoName: 'Vividel Inc (James Akabo)',
     bankName: 'Ecobank Ghana',
@@ -97,7 +97,7 @@ export const Settings: React.FC = () => {
 
             <Input
               label="Cal.com Booking URL"
-              placeholder="https://cal.com/vividel"
+              placeholder="https://cal.com/vividel-inc/30min?overlayCalendar=true"
               value={settings.calComLink}
               onChange={(e) => handleChange('calComLink', e.target.value)}
               icon={<LinkIcon className="w-4 h-4" />}

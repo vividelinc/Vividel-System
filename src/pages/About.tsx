@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
+import { DISCOVERY_CALL_URL } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
 
 export default function AboutPage() {
   useEffect(() => {
-    setPageMeta('About | Vividel Studio', 'Learn about Vividel Studio and our approach to commercial, brand, and product photography.');
+    setPageMeta('About | Vividel Inc.', 'Vividel Inc. is a Ghana-based commercial and event photography studio working with brands internationally.');
   }, []);
 
   return (
@@ -15,22 +15,25 @@ export default function AboutPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">About</p>
           <h1 className="mt-2 text-display text-on-surface">A dependable partner for commercial photography.</h1>
           <p className="mt-5 max-w-xl text-lg leading-8 text-on-surface-variant">
-            Vividel Studio specializes in commercial event coverage, brand photography, and product photography. We work with a calm, collaborative process built around clear deliverables and fast turnaround.
+            Vividel is a Ghana-based commercial and event photography studio delivering high-impact visuals for brands, businesses, and event organisers across Africa and internationally.
+          </p>
+          <p className="mt-4 max-w-xl text-base leading-7 text-on-surface-variant">
+            We work with marketing teams, event organisers, and creative directors who need photography that does more than document — visuals that drive campaigns, elevate brands, and make moments worth remembering. From product and brand shoots to large-scale corporate events and live productions, every frame is intentional, every deliverable is professional, and every project is handled end to end.
           </p>
 
           <div className="mt-8 rounded-[2rem] border border-outline bg-surface-2 p-6 shadow-elevation-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Mission</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Based in Ghana</p>
             <p className="mt-3 text-base leading-7 text-on-surface-variant">
-              To deliver photography that is consistent, on-brand, and ready to use across marketing, e-commerce, and event recaps.
+              Working internationally.
             </p>
           </div>
 
           <div className="mt-8">
-            <Link to="/book">
+            <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
               <Button variant="primary" size="lg">
                 Book a discovery call
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
 

@@ -14,7 +14,7 @@ export const Overview: React.FC = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
-  const [calComLink, setCalComLink] = useState<string>('https://cal.com/vividel');
+  const [calComLink, setCalComLink] = useState<string>('https://cal.com/vividel-inc/30min?overlayCalendar=true');
   const [isNewBookingOpen, setIsNewBookingOpen] = useState(false);
 
   useEffect(() => {

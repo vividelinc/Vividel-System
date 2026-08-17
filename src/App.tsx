@@ -17,6 +17,7 @@ import ServicesPage from './pages/Services';
 import AboutPage from './pages/About';
 import TestimonialsPage from './pages/Testimonials';
 import ContactPage from './pages/Contact';
+import PrivacyPage from './pages/Privacy';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="about" element={<AboutPage />} />
             <Route path="testimonials" element={<TestimonialsPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
           </Route>
 
           <Route path="/book" element={<BookingForm />} />

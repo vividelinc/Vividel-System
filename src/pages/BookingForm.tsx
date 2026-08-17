@@ -3,16 +3,15 @@ import { Step1Personal } from '../components/forms/Step1Personal';
 import { Step2Project } from '../components/forms/Step2Project';
 import { Step3Confirmation } from '../components/forms/Step3Confirmation';
 import { PhotographyService } from '../types';
-import { subscribeToActiveServices, subscribeToSettings } from '../firebase/firestore';
+import { subscribeToActiveServices } from '../firebase/firestore';
 import { triggerOnNewBooking } from '../services/cloudFunctions';
 import { Button } from '../components/ui/Button';
-import { Camera, CheckCircle2, ArrowRight, ArrowLeft, ExternalLink, Calendar } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
 import vividelLogo from '../assets/vividel-logo.png';
 
 export const BookingForm: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [services, setServices] = useState<PhotographyService[]>([]);
-  const [calComUrl, setCalComUrl] = useState<string>('https://cal.com/vividel');
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -39,14 +38,8 @@ export const BookingForm: React.FC = () => {
       }
     });
 
-    // Load settings for Cal.com link
-    const unsubSettings = subscribeToSettings((st) => {
-      if (st.calComLink) setCalComUrl(st.calComLink);
-    });
-
     return () => {
       unsubServices();
-      unsubSettings();
     };
   }, []);
 
@@ -167,17 +160,6 @@ export const BookingForm: React.FC = () => {
           <p className="text-xs text-[#8B96A0] bg-[#0A0D10]/50 p-3 rounded-lg border border-[#262D34]">
             You will receive a contract via email shortly. Once signed, deposit payment details will be provided.
           </p>
-
-          <div className="pt-2">
-            <a
-              href={calComUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs text-[#2DD4BF] hover:underline"
-            >
-              Need to reschedule your discovery call? Visit Cal.com <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
         </div>
       </div>
     );
@@ -196,15 +178,6 @@ export const BookingForm: React.FC = () => {
             Commercial & Event Photography
           </p>
         </div>
-
-        <a
-          href={calComUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#2DD4BF] bg-[#2DD4BF]/10 px-3 py-1.5 rounded-lg border border-[#2DD4BF]/30 hover:bg-[#2DD4BF]/20 transition-all"
-        >
-          <Calendar className="w-3.5 h-3.5" /> Discovery Call (Cal.com)
-        </a>
       </header>
 
       {/* Form Container */}

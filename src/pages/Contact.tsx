@@ -1,15 +1,18 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { Clock3, Mail } from 'lucide-react';
+import { Clock3, Facebook, Instagram, Linkedin, Mail, MessageCircle, Phone } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_TEL, CONTACT_WHATSAPP_URL, socialLinks } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
+
+const socialIcons = { LinkedIn: Linkedin, Instagram, Facebook };
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    setPageMeta('Contact | Vividel Studio', 'Get in touch to plan commercial event, brand, or product photography coverage.');
+    setPageMeta('Contact | Vividel Inc.', 'Get in touch to plan commercial event, brand, or product photography coverage.');
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -68,17 +71,43 @@ export default function ContactPage() {
 
         <aside className="rounded-[2rem] border border-outline bg-surface-2 p-6 shadow-elevation-2">
           <h2 className="text-2xl font-semibold text-on-surface">Reach out</h2>
-          {/* TODO: replace with real studio address and phone number once confirmed. */}
+          {/* TODO: add real studio address once confirmed. */}
           <ul className="mt-5 space-y-4 text-sm text-on-surface-variant">
             <li className="flex items-start gap-3">
               <Mail className="mt-0.5 h-4 w-4 text-primary" />
-              <a href="mailto:hello@vividel.studio" className="hover:text-primary">hello@vividel.studio</a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-primary">{CONTACT_EMAIL}</a>
+            </li>
+            <li className="flex items-start gap-3">
+              <Phone className="mt-0.5 h-4 w-4 text-primary" />
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="hover:text-primary">{CONTACT_PHONE_DISPLAY}</a>
+            </li>
+            <li className="flex items-start gap-3">
+              <MessageCircle className="mt-0.5 h-4 w-4 text-primary" />
+              <a href={CONTACT_WHATSAPP_URL} target="_blank" rel="noreferrer" className="hover:text-primary">Message on WhatsApp</a>
             </li>
             <li className="flex items-start gap-3">
               <Clock3 className="mt-0.5 h-4 w-4 text-primary" />
               <span>Mon–Sat · 9am–6pm</span>
             </li>
           </ul>
+
+          <div className="mt-6 flex items-center gap-3 border-t border-outline pt-6">
+            {socialLinks.map((social) => {
+              const Icon = socialIcons[social.label as keyof typeof socialIcons];
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Visit Vividel on ${social.label}`}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-outline bg-surface-1 text-on-surface transition hover:border-primary hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </div>
         </aside>
       </div>
     </div>

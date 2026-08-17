@@ -1,3 +1,26 @@
+// The public site sends leads here first; the owner shares the /book link
+// directly with a client only after a positive discovery call.
+export const DISCOVERY_CALL_URL = 'https://cal.com/vividel-inc/30min?overlayCalendar=true';
+
+export const CONTACT_EMAIL = 'vividelinc@gmail.com';
+export const CONTACT_PHONE_DISPLAY = '+233 50 412 4077';
+export const CONTACT_PHONE_TEL = '+233504124077';
+export const CONTACT_WHATSAPP_URL = 'https://wa.me/233504124077';
+
+export type SocialLink = {
+  label: string;
+  href: string;
+};
+
+export const socialLinks: SocialLink[] = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/vividel-inc' },
+  { label: 'Instagram', href: 'https://www.instagram.com/vividel.inc' },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/profile.php?id=61592474495822&sk=directory_privacy_and_legal_info&_rdc=1&_rdr'
+  }
+];
+
 export type ServiceItem = {
   name: string;
   description: string;

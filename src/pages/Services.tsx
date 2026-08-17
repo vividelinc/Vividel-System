@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
-import { services } from '../data/siteContent';
+import { DISCOVERY_CALL_URL, services } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
 
 export default function ServicesPage() {
   useEffect(() => {
-    setPageMeta('Services | Vividel Studio', 'Explore commercial event, brand, and product photography packages.');
+    setPageMeta('Services | Vividel Inc.', 'Explore commercial event, brand, and product photography packages.');
   }, []);
 
   return (
@@ -28,11 +27,11 @@ export default function ServicesPage() {
             <p className="mt-4 text-sm leading-6 text-on-surface-variant">{service.detail}</p>
 
             <div className="mt-8 border-t border-outline pt-5">
-              <Link to="/book">
+              <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
                 <Button variant="primary" size="lg">
-                  Book Now
+                  Book a Discovery Call
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         ))}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Lightbox } from '../components/gallery/Lightbox';
 import { PortfolioGrid } from '../components/gallery/PortfolioGrid';
 import { Button } from '../components/ui/Button';
+import { DISCOVERY_CALL_URL } from '../data/siteContent';
 import { portfolioCategories, portfolioItems, type PortfolioItem } from '../data/portfolio';
 import { setPageMeta } from '../lib/pageMeta';
 
@@ -11,7 +11,7 @@ export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
   useEffect(() => {
-    setPageMeta('Portfolio | Vividel Studio', 'Browse recent work across commercial events, brand photography, and product photography.');
+    setPageMeta('Portfolio | Vividel Inc.', 'Browse recent work across commercial events, brand photography, and product photography.');
   }, []);
 
   const visibleItems =
@@ -29,11 +29,11 @@ export default function PortfolioPage() {
           <h1 className="mt-2 text-display text-on-surface">Recent work across events, brand, and product photography.</h1>
         </div>
 
-        <Link to="/book">
+        <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
           <Button variant="primary" size="md">
-            Book a session
+            Book a Discovery Call
           </Button>
-        </Link>
+        </a>
       </div>
 
       <div className="mb-8 flex flex-wrap gap-2">
