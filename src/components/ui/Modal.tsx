@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface ModalProps {
@@ -7,6 +7,7 @@ interface ModalProps {
   title: string;
   children: React.ReactNode;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+  closeOnOverlayClick?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -14,8 +15,22 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   children,
-  maxWidth = 'md'
+  maxWidth = 'md',
+  closeOnOverlayClick = true
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const widthClasses = {
@@ -26,20 +41,29 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-surface-1/70 p-4 backdrop-blur-md"
+      onClick={closeOnOverlayClick ? onClose : undefined}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+    >
       <div
-        className={`w-full bg-[#171D23] border border-[#262D34] rounded-2xl shadow-2xl overflow-hidden ${widthClasses[maxWidth]}`}
+        onClick={(event) => event.stopPropagation()}
+        className={`w-full overflow-hidden rounded-[1.75rem] border border-outline bg-surface-1 shadow-elevation-5 ${widthClasses[maxWidth]}`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#262D34] bg-[#10151A]">
-          <h3 className="text-lg font-semibold text-[#F2F4F5]">{title}</h3>
+        <div className="flex items-center justify-between border-b border-outline bg-surface-2 px-6 py-4">
+          <h3 className="text-lg font-semibold text-on-surface">{title}</h3>
           <button
+            type="button"
+            aria-label="Close dialog"
             onClick={onClose}
-            className="text-[#F2F4F5]/60 hover:text-[#F2F4F5] p-1 rounded-lg hover:bg-[#262D34] transition-colors"
+            className="rounded-full p-2 text-on-surface-variant transition hover:bg-surface-1 hover:text-on-surface"
           >
-            <X className="w-5 h-5" />
+            <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="p-6 max-h-[80vh] overflow-y-auto">{children}</div>
+        <div className="max-h-[80vh] overflow-y-auto p-6">{children}</div>
       </div>
     </div>
   );

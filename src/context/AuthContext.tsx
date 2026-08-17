@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User } from 'firebase/auth';
+import { isFirebaseReady } from '../firebase/config';
 import { subscribeToAuthChanges, loginWithEmail, logout } from '../firebase/auth';
 import { initializeDefaultDataIfNeeded, testConnection } from '../firebase/firestore';
 
@@ -22,6 +23,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    if (!isFirebaseReady) {
+      setLoading(false);
+      return;
+    }
+
     // Validate connection to Firestore on boot
     testConnection();
 

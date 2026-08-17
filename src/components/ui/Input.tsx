@@ -16,24 +16,20 @@ export const Input: React.FC<InputProps> = ({
   return (
     <div className="w-full space-y-1.5">
       {label && (
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#8B96A0]">
+        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-on-surface-variant">
           {label}
         </label>
       )}
       <div className="relative flex items-center">
-        {icon && (
-          <div className="absolute left-3 text-[#2DD4BF] pointer-events-none">
-            {icon}
-          </div>
-        )}
+        {icon && <div className="pointer-events-none absolute left-3 text-primary">{icon}</div>}
         <input
-          className={`w-full bg-[#0A0D10] text-[#F2F4F5] placeholder-[#8B96A0]/40 border rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:border-[#2DD4BF] focus:ring-1 focus:ring-[#2DD4BF] transition-all duration-150 ${
+          className={`w-full rounded-[1rem] border bg-surface-2 px-3 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25 transition-all duration-150 ${
             icon ? 'pl-10' : ''
-          } ${error ? 'border-rose-500' : 'border-[#262D34]'} ${className}`}
+          } ${error ? 'border-rose-500' : 'border-outline'} ${className}`}
           {...props}
         />
       </div>
-      {error && <p className="text-xs text-rose-400 mt-1">{error}</p>}
+      {error && <p className="mt-1 text-xs text-rose-500">{error}</p>}
     </div>
   );
 };

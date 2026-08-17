@@ -9,36 +9,34 @@ interface BadgeProps {
 export const Badge: React.FC<BadgeProps> = ({ status, size = 'md' }) => {
   const getBadgeStyle = (st: string) => {
     switch (st) {
-      // Lead statuses
       case 'new':
-        return 'bg-[#2DD4BF]/20 text-[#2DD4BF] border-[#2DD4BF]/40';
+        return 'bg-primary-soft text-primary border-primary/30';
       case 'called':
-        return 'bg-slate-500/15 text-slate-300 border-slate-500/30';
+        return 'bg-slate-500/10 text-slate-700 border-slate-300';
       case 'converted':
-        return 'bg-[#059669]/30 text-[#34D399] border-[#059669]/60';
+        return 'bg-emerald-500/10 text-emerald-700 border-emerald-300';
       case 'lost':
-        return 'bg-rose-500/15 text-rose-300 border-rose-500/30';
+        return 'bg-rose-500/10 text-rose-700 border-rose-300';
 
-      // Booking statuses
       case 'pending_contract':
-        return 'bg-slate-500/15 text-slate-300 border-slate-500/30';
+        return 'bg-slate-500/10 text-slate-700 border-slate-300';
       case 'contract_sent':
-        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+        return 'bg-amber-500/10 text-amber-700 border-amber-300';
       case 'contract_signed':
-        return 'bg-[#2DD4BF]/20 text-[#2DD4BF] border-[#2DD4BF]/40';
+        return 'bg-primary-soft text-primary border-primary/30';
       case 'deposit_pending':
-        return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+        return 'bg-amber-500/10 text-amber-700 border-amber-300';
       case 'deposit_received':
-        return 'bg-[#059669]/30 text-[#34D399] border-[#059669]/60';
+        return 'bg-emerald-500/10 text-emerald-700 border-emerald-300';
       case 'shoot_scheduled':
-        return 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30';
+        return 'bg-indigo-500/10 text-indigo-700 border-indigo-300';
       case 'delivered':
-        return 'bg-[#059669]/25 text-[#34D399] border-[#059669]/50';
+        return 'bg-emerald-500/10 text-emerald-700 border-emerald-300';
       case 'completed':
-        return 'bg-[#2DD4BF]/25 text-[#2DD4BF] border-[#2DD4BF]/60 font-semibold';
+        return 'bg-primary-soft text-primary border-primary/30 font-semibold';
 
       default:
-        return 'bg-gray-500/15 text-gray-300 border-gray-500/30';
+        return 'bg-slate-500/10 text-slate-700 border-slate-300';
     }
   };
 

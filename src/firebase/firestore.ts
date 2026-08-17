@@ -81,6 +81,10 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
 
 // Validate Connection to Firestore on Boot
 export async function testConnection() {
+  if (!db) {
+    return;
+  }
+
   try {
     await getDocFromServer(doc(db, 'test', 'connection'));
   } catch (error) {
@@ -136,6 +140,10 @@ const DEFAULT_SETTINGS: SystemSettings = {
 // genuinely empty. This is DB setup, not a runtime mock-data fallback — once
 // seeded, everything reads from Firestore exclusively.
 export const initializeDefaultDataIfNeeded = async () => {
+  if (!db) {
+    return;
+  }
+
   try {
     const servicesSnap = await getDocs(collection(db, SERVICES_COL));
     if (servicesSnap.empty) {
