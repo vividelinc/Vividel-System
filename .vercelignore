@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+.DS_Store
+*.log
+.env
+.env.local
+firebase-applet-config.json
+
+# Raw photo dump (originals) — never needed at build/deploy time
+/assets/
