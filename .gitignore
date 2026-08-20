@@ -8,3 +8,6 @@ coverage/
 !.env.example
 .vercel
 firebase-applet-config.json
+
+# Raw photo dump (originals) — curated, web-optimized copies live in public/portfolio
+/assets/

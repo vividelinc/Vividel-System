@@ -21,6 +21,23 @@ export const socialLinks: SocialLink[] = [
   }
 ];
 
+// Displayed as a text/wordmark trust bar rather than pulled logos — see
+// conversation notes on why we didn't scrape third-party brand marks.
+export const trustedClients: string[] = [
+  'World Bank Ghana',
+  "Ministry of Education, Ghana",
+  "Attorney General's Office, Kumasi",
+  'Bolt Ghana',
+  'OFI (Olam Food Ingredients)',
+  'OCP (Olam Cocoa Processing)',
+  'Chamber of Agribusiness Ghana',
+  'Lancaster Kumasi City',
+  'Cedar Restaurants',
+  'The Joint Foods',
+  'Ridge Tennis Club',
+  'Compassion Ghana'
+];
+
 export type ServiceItem = {
   name: string;
   description: string;
@@ -30,22 +47,70 @@ export type ServiceItem = {
 
 export const services: ServiceItem[] = [
   {
-    name: 'Commercial Event Coverage',
-    description: 'Full coverage for conferences, product launches, and corporate gatherings.',
+    name: 'Corporate Events',
+    description: 'Full coverage for conferences, summits, launches, and corporate gatherings.',
     price: '$1,600+',
     detail: 'Includes a pre-event planning call, on-site coverage, and a same-week edited gallery.'
   },
   {
-    name: 'Brand Photography',
-    description: 'On-location or studio sessions for founders, teams, and brand campaigns that need a consistent visual identity.',
-    price: '$950+',
-    detail: 'Includes creative direction, location guidance, and a licensed image set.'
+    name: 'Brand & Product Photography',
+    description: 'Studio and on-location sessions for founders, teams, and product lines that need a consistent visual identity.',
+    price: '$650+',
+    detail: 'Includes creative direction, styling, and a retouched, platform-ready image set.'
   },
   {
-    name: 'Product Photography',
-    description: 'Studio product photography for e-commerce, catalogs, and marketing campaigns.',
-    price: '$650+',
-    detail: 'Includes styling, multiple angles per product, and retouched, platform-ready files.'
+    name: 'Night Life, Parties & Dinners',
+    description: 'Candid, atmosphere-first coverage for private dinners, parties, and nightlife events.',
+    price: '$900+',
+    detail: 'Includes on-site coverage through the night and a fast-turnaround highlight gallery.'
+  }
+];
+
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export const faqs: FaqItem[] = [
+  {
+    question: 'How far in advance should we book?',
+    answer:
+      "For corporate events and large productions, 2–4 weeks out is ideal so we can lock your date and plan logistics. Brand and product shoots can often be booked with less notice — tell us your timeline on the discovery call and we'll let you know what's realistic."
+  },
+  {
+    question: 'Do you travel outside Accra or Ghana for shoots?',
+    answer:
+      "Yes. We're based in Ghana and work with clients across the country, and take on select international projects. Travel and logistics are scoped as part of your discovery call."
+  },
+  {
+    question: 'What exactly is included in the starting price?',
+    answer:
+      'Every package covers on-site coverage, professional editing, and a delivered gallery. Exact deliverables — turnaround time, number of edited images, and usage rights — depend on the scope of your project, so we confirm the full breakdown on your discovery call before you book.'
+  },
+  {
+    question: 'How long until we receive the final photos?',
+    answer:
+      "Corporate event galleries are typically delivered within a week. Brand and product shoots usually turn around faster since they're studio-based. We'll confirm an exact delivery date before the shoot."
+  },
+  {
+    question: 'Do you provide the raw, unedited files?',
+    answer:
+      "No. Every image we deliver is professionally edited and color-graded to a consistent standard — raw files aren't part of standard packages."
+  },
+  {
+    question: 'Can we use the photos for ads and social media?',
+    answer:
+      'Yes. Usage rights are discussed upfront as part of every project scope, so you know exactly what you can do with the final images before you book.'
+  },
+  {
+    question: 'Do you require a deposit to book?',
+    answer:
+      'Yes — a deposit secures your date once a contract is signed, with the balance due on or before delivery. Exact terms are confirmed during booking.'
+  },
+  {
+    question: 'What if our event runs longer than planned?',
+    answer:
+      "Let us know as early as possible on the day and we'll do our best to extend coverage. Time beyond the agreed hours is billed at an hourly add-on rate."
   }
 ];
 

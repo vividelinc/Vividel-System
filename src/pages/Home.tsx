@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button';
 import { PortfolioGrid } from '../components/gallery/PortfolioGrid';
 import { Lightbox } from '../components/gallery/Lightbox';
 import { featuredPortfolioItems, portfolioItems, type PortfolioItem } from '../data/portfolio';
-import { DISCOVERY_CALL_URL, services, testimonials } from '../data/siteContent';
+import { DISCOVERY_CALL_URL, services, testimonials, trustedClients } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     setPageMeta(
-      'Vividel Inc. | Commercial, Brand & Product Photography',
+      'Vividel Inc. | Corporate, Brand & Event Photography',
       'Ghana-based commercial and event photography studio delivering high-impact visuals for brands internationally.'
     );
   }, []);
@@ -23,13 +23,9 @@ export default function Home() {
       <Lightbox item={selectedItem} items={portfolioItems} onClose={() => setSelectedItem(null)} onSelect={setSelectedItem} />
 
       <section className="relative overflow-hidden">
-        {/* Swap this hero image with the final studio hero once real photography is in place. */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80')"
-          }}
+          style={{ backgroundImage: "url('/portfolio/corporate-events/roundtable.jpg')" }}
         />
         <div className="absolute inset-0 bg-surface-1/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-surface-1 via-surface-1/85 to-surface-1/30" />
@@ -37,13 +33,13 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="max-w-2xl">
             <p className="inline-flex rounded-full border border-primary/60 bg-primary-soft px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Commercial Events • Brand • Product Photography
+              Corporate Events • Brand & Product • Night Life
             </p>
             <h1 className="mt-6 text-display text-on-surface">
               Professional photography for brands that mean business.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-on-surface-variant">
-              Vividel Inc. delivers commercial event coverage, brand photography, and product photography with a fast, reliable turnaround.
+              Vividel Inc. delivers corporate event coverage, brand and product photography, and nightlife coverage with a fast, reliable turnaround.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -58,6 +54,24 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-outline bg-surface-2 py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-on-surface-variant">
+            Trusted by
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+            {trustedClients.map((client) => (
+              <span
+                key={client}
+                className="text-sm font-semibold uppercase tracking-[0.08em] text-on-surface-variant/80"
+              >
+                {client}
+              </span>
+            ))}
           </div>
         </div>
       </section>

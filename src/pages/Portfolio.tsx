@@ -11,7 +11,7 @@ export default function PortfolioPage() {
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
   useEffect(() => {
-    setPageMeta('Portfolio | Vividel Inc.', 'Browse recent work across commercial events, brand photography, and product photography.');
+    setPageMeta('Portfolio | Vividel Inc.', 'Browse recent work across corporate events, brand and product photography, and nightlife.');
   }, []);
 
   const visibleItems =
@@ -26,7 +26,7 @@ export default function PortfolioPage() {
       <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Portfolio</p>
-          <h1 className="mt-2 text-display text-on-surface">Recent work across events, brand, and product photography.</h1>
+          <h1 className="mt-2 text-display text-on-surface">Recent work across corporate events, brand & product, and night life.</h1>
         </div>
 
         <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">

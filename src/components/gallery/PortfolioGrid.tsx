@@ -33,7 +33,7 @@ export function PortfolioGrid({ items, featured = false, onSelect }: PortfolioGr
           >
             <div className="relative overflow-hidden rounded-[1.5rem] bg-surface-2 shadow-elevation-2">
               <img
-                src={item.image}
+                src={item.thumbImage}
                 alt={item.alt}
                 loading="lazy"
                 className="h-80 w-full object-cover transition-transform duration-500 group-hover:scale-105"

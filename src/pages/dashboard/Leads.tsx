@@ -71,7 +71,7 @@ export const Leads: React.FC = () => {
         {/* Controls Row */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           {/* Status Tabs */}
-          <div className="flex items-center gap-1.5 p-1 bg-[#171D23] border border-[#262D34] rounded-xl overflow-x-auto">
+          <div className="flex items-center gap-1.5 p-1 bg-surface-1 border border-outline rounded-xl overflow-x-auto">
             {tabs.map((tab) => {
               const count =
                 tab.id === 'all'
@@ -83,16 +83,16 @@ export const Leads: React.FC = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                     activeTab === tab.id
-                      ? 'bg-[#2DD4BF] text-[#0A0D10] font-bold shadow-sm'
-                      : 'text-[#8B96A0] hover:text-[#F2F4F5] hover:bg-[#262D34]/50'
+                      ? 'bg-primary text-primary-foreground font-bold shadow-sm'
+                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-2'
                   }`}
                 >
                   {tab.label}
                   <span
                     className={`text-[10px] px-1.5 py-0.2 rounded-full ${
                       activeTab === tab.id
-                        ? 'bg-[#0A0D10]/20 text-[#0A0D10]'
-                        : 'bg-[#0A0D10] text-[#8B96A0]/70'
+                        ? 'bg-primary-foreground/20 text-primary-foreground'
+                        : 'bg-surface-2 text-on-surface-variant/70'
                     }`}
                   >
                     {count}
@@ -116,8 +116,8 @@ export const Leads: React.FC = () => {
         {/* Leads Table */}
         <Card className="p-0 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-[#F2F4F5]">
-              <thead className="bg-[#0A0D10] text-[#8B96A0] uppercase tracking-wider text-[10px] border-b border-[#262D34]">
+            <table className="w-full text-left text-xs text-on-surface">
+              <thead className="bg-surface-2 text-on-surface-variant uppercase tracking-wider text-[10px] border-b border-outline">
                 <tr>
                   <th className="p-4">Client Name</th>
                   <th className="p-4">Contact</th>
@@ -127,10 +127,10 @@ export const Leads: React.FC = () => {
                   <th className="p-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#262D34]">
+              <tbody className="divide-y divide-outline">
                 {filteredLeads.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="p-8 text-center text-[#8B96A0]/60">
+                    <td colSpan={6} className="p-8 text-center text-on-surface-variant/60">
                       No leads matching criteria found.
                     </td>
                   </tr>
@@ -139,32 +139,32 @@ export const Leads: React.FC = () => {
                     <tr
                       key={lead.id}
                       onClick={() => setSelectedLead(lead)}
-                      className="hover:bg-[#262D34]/40 transition-colors cursor-pointer"
+                      className="hover:bg-surface-2 transition-colors cursor-pointer"
                     >
-                      <td className="p-4 font-semibold text-sm text-[#F2F4F5]">
+                      <td className="p-4 font-semibold text-sm text-on-surface">
                         {lead.name}
                       </td>
-                      <td className="p-4 space-y-0.5 text-[#8B96A0]">
+                      <td className="p-4 space-y-0.5 text-on-surface-variant">
                         <div className="flex items-center gap-1.5">
-                          <Mail className="w-3 h-3 text-[#2DD4BF]" /> {lead.email}
+                          <Mail className="w-3 h-3 text-primary" /> {lead.email}
                         </div>
-                        <div className="flex items-center gap-1.5 text-[#8B96A0]/60">
+                        <div className="flex items-center gap-1.5 text-on-surface-variant/60">
                           <Phone className="w-3 h-3" /> {lead.phone}
                         </div>
                       </td>
                       <td className="p-4">
-                        <span className="capitalize px-2 py-0.5 rounded-full bg-[#0A0D10] border border-[#262D34] text-[11px] text-[#2DD4BF]">
+                        <span className="capitalize px-2 py-0.5 rounded-full bg-surface-2 border border-outline text-[11px] text-primary">
                           {lead.source}
                         </span>
                       </td>
-                      <td className="p-4 text-[#8B96A0]">
+                      <td className="p-4 text-on-surface-variant">
                         {lead.callDate ? (
                           <div className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3 text-[#2DD4BF]" />
+                            <Calendar className="w-3 h-3 text-primary" />
                             {new Date(lead.callDate).toLocaleDateString()}
                           </div>
                         ) : (
-                          <span className="text-[#8B96A0]/40">Not set</span>
+                          <span className="text-on-surface-variant/40">Not set</span>
                         )}
                       </td>
                       <td className="p-4">

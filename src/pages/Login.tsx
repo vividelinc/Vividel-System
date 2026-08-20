@@ -40,22 +40,22 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0D10] text-[#F2F4F5] flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-surface-2 text-on-surface flex items-center justify-center p-6 relative overflow-hidden">
       {/* Glow shapes */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#2DD4BF]/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#059669]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-md w-full bg-[#171D23]/90 border border-[#262D34] rounded-2xl p-8 shadow-2xl backdrop-blur-md relative z-10 animate-fade-in">
+      <div className="max-w-md w-full bg-surface-1/90 border border-outline rounded-2xl p-8 shadow-2xl backdrop-blur-md relative z-10 animate-fade-in">
         {/* Wordmark Header */}
         <div className="text-center space-y-3 mb-8">
           <img src={vividelLogo} alt="Vividel Inc." className="h-12 w-auto mx-auto" />
-          <p className="text-xs text-[#2DD4BF] uppercase tracking-widest font-semibold">
+          <p className="text-xs text-primary uppercase tracking-widest font-semibold">
             Studio Operations Dashboard
           </p>
         </div>
 
         {error && (
-          <div className="mb-6 bg-rose-500/15 border border-rose-500/30 text-rose-300 p-3.5 rounded-xl text-xs">
+          <div className="mb-6 bg-rose-500/15 border border-rose-500/30 text-rose-600 p-3.5 rounded-xl text-xs">
             {error}
           </div>
         )}
@@ -89,8 +89,8 @@ export const Login: React.FC = () => {
           </Button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-[#262D34] text-center space-y-2">
-          <p className="text-[11px] text-[#8B96A0]/60">
+        <div className="mt-8 pt-6 border-t border-outline text-center space-y-2">
+          <p className="text-[11px] text-on-surface-variant/60">
             Restricted access for James Akabo Jnr & authorized personnel.
           </p>
         </div>

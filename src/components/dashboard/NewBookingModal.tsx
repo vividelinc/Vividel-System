@@ -174,18 +174,18 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
         </div>
 
         <div className="space-y-1.5">
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#8B96A0]">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
             Special Requirements / Internal Notes
           </label>
           <textarea
             rows={2}
-            className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-2.5 text-sm focus:border-[#2DD4BF] focus:outline-none"
+            className="w-full bg-surface-2 text-on-surface border border-outline rounded-lg p-2.5 text-sm focus:border-primary focus:outline-none"
             value={specialRequirements}
             onChange={(e) => setSpecialRequirements(e.target.value)}
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
+        <div className="flex justify-end gap-3 pt-4 border-t border-outline">
           <Button variant="ghost" type="button" onClick={onClose}>
             Cancel
           </Button>

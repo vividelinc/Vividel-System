@@ -5,8 +5,8 @@ import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Modal } from '../../components/ui/Modal';
 import { PhotographyService } from '../../types';
-import { subscribeToServices, addService, updateService } from '../../firebase/firestore';
-import { Camera, Plus, CheckCircle2, XCircle, DollarSign, Edit3 } from 'lucide-react';
+import { subscribeToServices, addService, updateService, deleteService } from '../../firebase/firestore';
+import { Plus, Edit3, Trash2 } from 'lucide-react';
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<PhotographyService[]>([]);
@@ -47,6 +47,12 @@ export const Services: React.FC = () => {
   const handleToggleActive = async (s: PhotographyService) => {
     if (!s.id) return;
     await updateService(s.id, { isActive: !s.isActive });
+  };
+
+  const handleDelete = async (s: PhotographyService) => {
+    if (!s.id) return;
+    if (!window.confirm(`Delete "${s.name}"? This can't be undone.`)) return;
+    await deleteService(s.id);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -100,56 +106,65 @@ export const Services: React.FC = () => {
             <Card
               key={service.id}
               className={`space-y-4 border-l-4 ${
-                service.isActive ? 'border-l-[#2DD4BF]' : 'border-l-gray-600 opacity-60'
+                service.isActive ? 'border-l-primary' : 'border-l-gray-600 opacity-60'
               }`}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="font-bold text-lg text-[#F2F4F5] font-serif">{service.name}</h3>
+                    <h3 className="font-bold text-lg text-on-surface font-serif">{service.name}</h3>
                     <span
                       className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
                         service.isActive
-                          ? 'bg-[#059669]/30 border-[#059669] text-[#34D399]'
-                          : 'bg-gray-500/15 border-gray-500/30 text-gray-400'
+                          ? 'bg-emerald-600/30 border-emerald-600 text-emerald-700'
+                          : 'bg-gray-500/15 border-gray-500/30 text-gray-600'
                       }`}
                     >
                       {service.isActive ? 'Active' : 'Inactive'}
                     </span>
                   </div>
-                  <p className="text-xs text-[#8B96A0] mt-1 leading-relaxed">
+                  <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
                     {service.description}
                   </p>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="text-[10px] uppercase text-[#8B96A0]/60 block">Starting At</span>
-                  <span className="text-xl font-bold text-[#2DD4BF] font-serif">
+                  <span className="text-[10px] uppercase text-on-surface-variant/60 block">Starting At</span>
+                  <span className="text-xl font-bold text-primary font-serif">
                     ${service.startingPrice?.toLocaleString()}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-3 border-t border-[#262D34]">
+              <div className="flex items-center justify-between pt-3 border-t border-outline">
                 <button
                   onClick={() => handleToggleActive(service)}
                   className={`text-xs font-medium px-3 py-1.5 rounded-lg border transition-all cursor-pointer ${
                     service.isActive
-                      ? 'border-rose-500/30 text-rose-300 hover:bg-rose-500/10'
-                      : 'border-[#059669] text-[#34D399] hover:bg-[#059669]/20'
+                      ? 'border-rose-500/30 text-rose-600 hover:bg-rose-500/10'
+                      : 'border-emerald-600 text-emerald-700 hover:bg-emerald-600/20'
                   }`}
                 >
                   {service.isActive ? 'Deactivate Package' : 'Activate Package'}
                 </button>
 
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => handleOpenEdit(service)}
-                  icon={<Edit3 className="w-3.5 h-3.5" />}
-                >
-                  Edit Package
-                </Button>
+                <div className="flex items-center gap-1">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleOpenEdit(service)}
+                    icon={<Edit3 className="w-3.5 h-3.5" />}
+                  >
+                    Edit
+                  </Button>
+                  <button
+                    onClick={() => handleDelete(service)}
+                    title="Delete service"
+                    className="p-2 rounded-lg text-on-surface-variant hover:text-rose-600 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </Card>
           ))}
@@ -172,12 +187,12 @@ export const Services: React.FC = () => {
           />
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-[#F2F4F5]/70">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-on-surface/70">
               Service Description
             </label>
             <textarea
               rows={3}
-              className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-2.5 text-sm focus:border-[#2DD4BF] focus:outline-none"
+              className="w-full bg-surface-2 text-on-surface border border-outline rounded-lg p-2.5 text-sm focus:border-primary focus:outline-none"
               placeholder="What is included in this package..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -197,12 +212,12 @@ export const Services: React.FC = () => {
               type="checkbox"
               checked={isActive}
               onChange={(e) => setIsActive(e.target.checked)}
-              className="w-4 h-4 accent-[#2DD4BF] rounded"
+              className="w-4 h-4 accent-primary rounded"
             />
-            <span className="text-xs text-[#F2F4F5]">Show in Client Booking Form (/book)</span>
+            <span className="text-xs text-on-surface">Show in Client Booking Form (/book)</span>
           </label>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-[#262D34]">
+          <div className="flex justify-end gap-3 pt-4 border-t border-outline">
             <Button variant="ghost" type="button" onClick={() => setIsAddModalOpen(false)}>
               Cancel
             </Button>

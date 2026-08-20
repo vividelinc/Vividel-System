@@ -58,7 +58,7 @@ export const BookingDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="p-12 text-center text-xs text-[#F2F4F5]/60">
+      <div className="p-12 text-center text-xs text-on-surface/60">
         Loading booking details...
       </div>
     );
@@ -67,7 +67,7 @@ export const BookingDetail: React.FC = () => {
   if (!booking || !id) {
     return (
       <div className="p-12 text-center space-y-4">
-        <p className="text-[#F2F4F5]">Booking record not found.</p>
+        <p className="text-on-surface">Booking record not found.</p>
         <Button onClick={() => navigate('/dashboard/bookings')}>Return to Pipeline</Button>
       </div>
     );
@@ -181,29 +181,29 @@ export const BookingDetail: React.FC = () => {
 
       <div className="p-8 space-y-8 max-w-7xl mx-auto">
         {/* Top Status & Overview Bar */}
-        <Card className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-[#2DD4BF]/30 bg-gradient-to-r from-[#171D23] to-[#0A0D10]">
+        <Card className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-primary/30 bg-gradient-to-r from-surface-1 to-surface-2">
           <div className="space-y-2">
             <div className="flex items-center gap-3">
-              <h2 className="text-xl font-bold font-serif text-[#F2F4F5]">
+              <h2 className="text-xl font-bold font-serif text-on-surface">
                 {booking.clientName}
               </h2>
               <Badge status={booking.status} />
             </div>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-[#8B96A0]">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-on-surface-variant">
               <span className="flex items-center gap-1">
-                <Mail className="w-3.5 h-3.5 text-[#2DD4BF]" /> {booking.clientEmail}
+                <Mail className="w-3.5 h-3.5 text-primary" /> {booking.clientEmail}
               </span>
               <span className="flex items-center gap-1">
-                <Phone className="w-3.5 h-3.5 text-[#2DD4BF]" /> {booking.clientPhone}
+                <Phone className="w-3.5 h-3.5 text-primary" /> {booking.clientPhone}
               </span>
               <span className="flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-[#2DD4BF]" /> Shoot: {booking.shootDate}
+                <Calendar className="w-3.5 h-3.5 text-primary" /> Shoot: {booking.shootDate}
               </span>
             </div>
           </div>
 
           <div className="w-full md:w-64 space-y-1.5 shrink-0">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-[#2DD4BF]">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-primary">
               Move Workflow Stage
             </label>
             <Select
@@ -221,36 +221,36 @@ export const BookingDetail: React.FC = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Contract Section */}
             <Card className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#262D34] pb-3">
-                <h3 className="font-bold text-base text-[#F2F4F5] flex items-center gap-2">
-                  <FileCheck className="w-5 h-5 text-[#2DD4BF]" /> DocuSeal Contract Integration
+              <div className="flex items-center justify-between border-b border-outline pb-3">
+                <h3 className="font-bold text-base text-on-surface flex items-center gap-2">
+                  <FileCheck className="w-5 h-5 text-primary" /> DocuSeal Contract Integration
                 </h3>
-                <span className="text-xs text-[#2DD4BF] font-semibold">
+                <span className="text-xs text-primary font-semibold">
                   {booking.contractUrl ? 'Contract Active' : 'No Contract Generated'}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="bg-[#0A0D10] p-3.5 rounded-xl border border-[#262D34] space-y-1">
-                  <span className="text-[#8B96A0] block">Contract Status</span>
-                  <span className="font-bold text-[#F2F4F5] text-sm capitalize">
+                <div className="bg-surface-2 p-3.5 rounded-xl border border-outline space-y-1">
+                  <span className="text-on-surface-variant block">Contract Status</span>
+                  <span className="font-bold text-on-surface text-sm capitalize">
                     {booking.status.includes('contract') ? booking.status.replace(/_/g, ' ') : 'Generated'}
                   </span>
                 </div>
 
-                <div className="bg-[#0A0D10] p-3.5 rounded-xl border border-[#262D34] space-y-1">
-                  <span className="text-[#8B96A0] block">DocuSeal Document Link</span>
+                <div className="bg-surface-2 p-3.5 rounded-xl border border-outline space-y-1">
+                  <span className="text-on-surface-variant block">DocuSeal Document Link</span>
                   {booking.contractUrl ? (
                     <a
                       href={booking.contractUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#2DD4BF] font-semibold hover:underline flex items-center gap-1 text-xs truncate"
+                      className="text-primary font-semibold hover:underline flex items-center gap-1 text-xs truncate"
                     >
                       Open e-Signature Document <ExternalLink className="w-3 h-3" />
                     </a>
                   ) : (
-                    <span className="text-[#8B96A0]/40">Not generated yet</span>
+                    <span className="text-on-surface-variant/40">Not generated yet</span>
                   )}
                 </div>
               </div>
@@ -281,33 +281,33 @@ export const BookingDetail: React.FC = () => {
 
             {/* Payment Section */}
             <Card className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#262D34] pb-3">
-                <h3 className="font-bold text-base text-[#F2F4F5] flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-[#2DD4BF]" /> Financials & Payment Tracking
+              <div className="flex items-center justify-between border-b border-outline pb-3">
+                <h3 className="font-bold text-base text-on-surface flex items-center gap-2">
+                  <CreditCard className="w-5 h-5 text-primary" /> Financials & Payment Tracking
                 </h3>
-                <span className="text-sm font-bold text-[#2DD4BF]">
+                <span className="text-sm font-bold text-primary">
                   Total: ${booking.totalPrice?.toLocaleString()} USD
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                <div className="bg-[#0A0D10] p-3.5 rounded-xl border border-[#262D34] space-y-1">
-                  <span className="text-[#8B96A0] block">Deposit Amount (50%)</span>
-                  <span className="font-bold text-[#F2F4F5] text-base">
+                <div className="bg-surface-2 p-3.5 rounded-xl border border-outline space-y-1">
+                  <span className="text-on-surface-variant block">Deposit Amount (50%)</span>
+                  <span className="font-bold text-on-surface text-base">
                     ${booking.depositAmount?.toLocaleString()}
                   </span>
                 </div>
 
-                <div className="bg-[#0A0D10] p-3.5 rounded-xl border border-[#262D34] space-y-1">
-                  <span className="text-[#8B96A0] block">Deposit Deadline</span>
-                  <span className="font-bold text-[#F2F4F5] text-sm">
+                <div className="bg-surface-2 p-3.5 rounded-xl border border-outline space-y-1">
+                  <span className="text-on-surface-variant block">Deposit Deadline</span>
+                  <span className="font-bold text-on-surface text-sm">
                     {booking.depositDeadline || 'Within 7 days of contract'}
                   </span>
                 </div>
 
-                <div className="bg-[#0A0D10] p-3.5 rounded-xl border border-[#262D34] space-y-1">
-                  <span className="text-[#8B96A0] block">Balance Due On Delivery</span>
-                  <span className="font-bold text-[#2DD4BF] text-base">
+                <div className="bg-surface-2 p-3.5 rounded-xl border border-outline space-y-1">
+                  <span className="text-on-surface-variant block">Balance Due On Delivery</span>
+                  <span className="font-bold text-primary text-base">
                     ${(booking.totalPrice - booking.depositAmount)?.toLocaleString()}
                   </span>
                 </div>
@@ -335,29 +335,29 @@ export const BookingDetail: React.FC = () => {
 
             {/* Shoot Details Card */}
             <Card className="space-y-4">
-              <h3 className="font-bold text-base text-[#F2F4F5] border-b border-[#262D34] pb-3">
+              <h3 className="font-bold text-base text-on-surface border-b border-outline pb-3">
                 Shoot Logistics & Venue Requirements
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                 <div>
-                  <span className="text-[#8B96A0] block font-semibold uppercase">Primary Location</span>
-                  <p className="text-[#F2F4F5] mt-1 font-medium flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#2DD4BF]" /> {booking.location || 'Location Pending'}
+                  <span className="text-on-surface-variant block font-semibold uppercase">Primary Location</span>
+                  <p className="text-on-surface mt-1 font-medium flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-primary" /> {booking.location || 'Location Pending'}
                   </p>
                 </div>
 
                 <div>
-                  <span className="text-[#8B96A0] block font-semibold uppercase">Backup Date</span>
-                  <p className="text-[#F2F4F5] mt-1 font-medium">
+                  <span className="text-on-surface-variant block font-semibold uppercase">Backup Date</span>
+                  <p className="text-on-surface mt-1 font-medium">
                     {booking.backupDate || 'None specified'}
                   </p>
                 </div>
 
                 {booking.specialRequirements && (
-                  <div className="sm:col-span-2 pt-2 border-t border-[#262D34]">
-                    <span className="text-[#8B96A0] block font-semibold uppercase">Special Requirements</span>
-                    <p className="text-[#F2F4F5] mt-1 bg-[#0A0D10] p-3 rounded-lg border border-[#262D34] text-xs">
+                  <div className="sm:col-span-2 pt-2 border-t border-outline">
+                    <span className="text-on-surface-variant block font-semibold uppercase">Special Requirements</span>
+                    <p className="text-on-surface mt-1 bg-surface-2 p-3 rounded-lg border border-outline text-xs">
                       {booking.specialRequirements}
                     </p>
                   </div>
@@ -370,10 +370,10 @@ export const BookingDetail: React.FC = () => {
           <div className="space-y-6">
             {/* Internal Notes */}
             <Card className="space-y-3">
-              <h3 className="font-bold text-sm text-[#F2F4F5] flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#2DD4BF]" /> Internal Notes
+              <h3 className="font-bold text-sm text-on-surface flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-primary" /> Internal Notes
               </h3>
-              <p className="text-[11px] text-[#8B96A0]">
+              <p className="text-[11px] text-on-surface-variant">
                 Private notes for James Akabo Jnr. The client never sees this.
               </p>
               <textarea
@@ -381,7 +381,7 @@ export const BookingDetail: React.FC = () => {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Enter private studio notes..."
-                className="w-full bg-[#0A0D10] text-[#F2F4F5] border border-[#262D34] rounded-lg p-3 text-xs focus:border-[#2DD4BF] focus:outline-none"
+                className="w-full bg-surface-2 text-on-surface border border-outline rounded-lg p-3 text-xs focus:border-primary focus:outline-none"
               />
               <Button size="sm" onClick={handleSaveNotes} className="w-full">
                 Save Notes
@@ -390,23 +390,23 @@ export const BookingDetail: React.FC = () => {
 
             {/* Auto-generated Activity Log */}
             <Card className="space-y-3">
-              <h3 className="font-bold text-sm text-[#F2F4F5] flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[#2DD4BF]" /> Workflow Activity Log
+              <h3 className="font-bold text-sm text-on-surface flex items-center gap-2">
+                <Clock className="w-4 h-4 text-primary" /> Workflow Activity Log
               </h3>
 
               <div className="space-y-3 max-h-80 overflow-y-auto pr-1">
                 {!booking.activityLog || booking.activityLog.length === 0 ? (
-                  <p className="text-xs text-[#8B96A0]/40">No activity recorded yet.</p>
+                  <p className="text-xs text-on-surface-variant/40">No activity recorded yet.</p>
                 ) : (
                   booking.activityLog.map((log) => (
                     <div
                       key={log.id}
-                      className="bg-[#0A0D10] p-3 rounded-xl border border-[#262D34] space-y-1 text-xs"
+                      className="bg-surface-2 p-3 rounded-xl border border-outline space-y-1 text-xs"
                     >
-                      <div className="flex items-center justify-between text-[#F2F4F5]">
+                      <div className="flex items-center justify-between text-on-surface">
                         <span className="font-semibold">{log.title}</span>
                       </div>
-                      <div className="flex items-center justify-between text-[10px] text-[#8B96A0]">
+                      <div className="flex items-center justify-between text-[10px] text-on-surface-variant">
                         <span>{log.author}</span>
                         <span>{new Date(log.timestamp).toLocaleString()}</span>
                       </div>
@@ -422,22 +422,22 @@ export const BookingDetail: React.FC = () => {
       {/* Contract Generated Confirmation Modal */}
       {contractModalData && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#171D23] border border-[#262D34] rounded-2xl max-w-xl w-full p-6 space-y-5 text-xs text-[#F2F4F5]">
-            <div className="flex justify-between items-center border-b border-[#262D34] pb-3">
+          <div className="bg-surface-1 border border-outline rounded-2xl max-w-xl w-full p-6 space-y-5 text-xs text-on-surface">
+            <div className="flex justify-between items-center border-b border-outline pb-3">
               <div className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-[#2DD4BF]" />
-                <h3 className="font-bold text-base text-[#F2F4F5]">Contract Generated & Emailed</h3>
+                <Mail className="w-5 h-5 text-primary" />
+                <h3 className="font-bold text-base text-on-surface">Contract Generated & Emailed</h3>
               </div>
               <button
                 onClick={() => setContractModalData(null)}
-                className="text-[#8B96A0] hover:text-[#F2F4F5] text-lg font-bold"
+                className="text-on-surface-variant hover:text-on-surface text-lg font-bold"
               >
                 ✕
               </button>
             </div>
 
-            <p className="text-xs text-[#8B96A0]">
-              The contract has been generated via DocuSeal and Vividel's system automatically emailed the signing link to <strong className="text-[#F2F4F5]">{contractModalData.clientEmail}</strong>. You can also share it directly below:
+            <p className="text-xs text-on-surface-variant">
+              The contract has been generated via DocuSeal and Vividel's system automatically emailed the signing link to <strong className="text-on-surface">{contractModalData.clientEmail}</strong>. You can also share it directly below:
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -455,7 +455,7 @@ export const BookingDetail: React.FC = () => {
                   navigator.clipboard.writeText(contractModalData.contractUrl);
                   alert('Contract URL copied to clipboard!');
                 }}
-                className="inline-flex items-center justify-center gap-2 bg-[#0A0D10] text-[#F2F4F5] hover:bg-[#171D23] border border-[#262D34] py-2.5 px-4 rounded-xl font-semibold transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-surface-2 text-on-surface hover:bg-surface-1 border border-outline py-2.5 px-4 rounded-xl font-semibold transition-all"
               >
                 Copy Contract Link
               </button>
@@ -464,7 +464,7 @@ export const BookingDetail: React.FC = () => {
                 href={contractModalData.contractUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#0A0D10] text-[#2DD4BF] hover:bg-[#171D23] border border-[#2DD4BF]/30 py-2.5 px-4 rounded-xl font-semibold transition-all sm:col-span-2"
+                className="inline-flex items-center justify-center gap-2 bg-surface-2 text-primary hover:bg-surface-1 border border-primary/30 py-2.5 px-4 rounded-xl font-semibold transition-all sm:col-span-2"
               >
                 <ExternalLink className="w-4 h-4" /> View Contract Page
               </a>

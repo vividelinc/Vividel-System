@@ -38,10 +38,10 @@ export function Lightbox({ item, items, onClose, onSelect }: LightboxProps) {
   }, [nextItem, onClose, onSelect, previousItem]);
 
   return (
-    <Modal isOpen={Boolean(item)} onClose={onClose} title={item.title} maxWidth="xl">
-      <div className="grid gap-6 lg:grid-cols-[1.55fr_0.9fr]">
-        <div className="relative overflow-hidden rounded-[1.5rem] bg-surface-2">
-          <img src={item.image} alt={item.alt} className="max-h-[70vh] w-full object-cover" />
+    <Modal isOpen={Boolean(item)} onClose={onClose} title={item.title} maxWidth="6xl">
+      <div className="grid gap-6 lg:grid-cols-[1.7fr_0.8fr]">
+        <div className="relative flex items-center justify-center overflow-hidden rounded-[1.5rem] bg-surface-2">
+          <img src={item.image} alt={item.alt} className="max-h-[80vh] w-full object-contain" />
         </div>
 
         <div className="flex flex-col justify-between gap-5">
@@ -58,10 +58,6 @@ export function Lightbox({ item, items, onClose, onSelect }: LightboxProps) {
             <Button type="button" variant="primary" onClick={() => onSelect(nextItem)}>
               Next
             </Button>
-          </div>
-
-          <div className="rounded-2xl border border-outline bg-surface-2 p-4 text-sm text-on-surface-variant">
-            Placeholder image — swap for real client photography once available.
           </div>
         </div>
       </div>

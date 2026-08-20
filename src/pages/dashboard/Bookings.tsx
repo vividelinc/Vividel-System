@@ -28,7 +28,7 @@ export const Bookings: React.FC = () => {
     { id: 'deposit_received', label: 'Deposit Received', color: 'border-t-emerald-500' },
     { id: 'shoot_scheduled', label: 'Shoot Scheduled', color: 'border-t-purple-500' },
     { id: 'delivered', label: 'Delivered', color: 'border-t-teal-500' },
-    { id: 'completed', label: 'Completed', color: 'border-t-[#2DD4BF]' }
+    { id: 'completed', label: 'Completed', color: 'border-t-primary' }
   ];
 
   const handleMoveStatus = async (
@@ -79,16 +79,16 @@ export const Bookings: React.FC = () => {
             return (
               <div
                 key={col.id}
-                className="w-72 shrink-0 bg-[#10151A] border border-[#262D34] rounded-2xl flex flex-col max-h-[calc(100vh-180px)] shadow-lg"
+                className="w-72 shrink-0 bg-surface-1 border border-outline rounded-2xl flex flex-col max-h-[calc(100vh-180px)] shadow-lg"
               >
                 {/* Column Header */}
                 <div
-                  className={`p-4 border-b border-[#262D34] border-t-4 ${col.color} flex items-center justify-between bg-[#10151A]/90 rounded-t-2xl`}
+                  className={`p-4 border-b border-outline border-t-4 ${col.color} flex items-center justify-between bg-surface-1/90 rounded-t-2xl`}
                 >
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-[#F2F4F5] flex items-center gap-1.5">
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-on-surface flex items-center gap-1.5">
                     {col.label}
                   </h3>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#262D34] text-[#2DD4BF]">
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary-soft text-primary">
                     {colBookings.length}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export const Bookings: React.FC = () => {
                 {/* Cards Container */}
                 <div className="p-3 space-y-3 overflow-y-auto flex-1">
                   {colBookings.length === 0 ? (
-                    <div className="p-6 text-center text-xs text-[#8B96A0]/40 border border-dashed border-[#262D34] rounded-xl">
+                    <div className="p-6 text-center text-xs text-on-surface-variant/40 border border-dashed border-outline rounded-xl">
                       No bookings in stage
                     </div>
                   ) : (
@@ -104,29 +104,29 @@ export const Bookings: React.FC = () => {
                       <Card
                         key={b.id}
                         onClick={() => navigate(`/dashboard/bookings/${b.id}`)}
-                        className="p-4 space-y-3 border-[#262D34] bg-[#171D23] hover:border-[#2DD4BF]/60 transition-all cursor-pointer relative group"
+                        className="p-4 space-y-3 border-outline bg-surface-1 hover:border-primary/60 transition-all cursor-pointer relative group"
                       >
                         <div>
-                          <h4 className="font-bold text-sm text-[#F2F4F5] group-hover:text-[#2DD4BF] transition-colors">
+                          <h4 className="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
                             {b.clientName}
                           </h4>
-                          <p className="text-xs text-[#8B96A0] mt-0.5">
+                          <p className="text-xs text-on-surface-variant mt-0.5">
                             {b.service}
                           </p>
                         </div>
 
-                        <div className="space-y-1 text-xs pt-2 border-t border-[#262D34]/80">
-                          <div className="flex items-center justify-between text-[#F2F4F5]/80">
+                        <div className="space-y-1 text-xs pt-2 border-t border-outline/80">
+                          <div className="flex items-center justify-between text-on-surface/80">
                             <span className="flex items-center gap-1 text-[11px]">
-                              <Calendar className="w-3 h-3 text-[#2DD4BF]" />
+                              <Calendar className="w-3 h-3 text-primary" />
                               {b.shootDate ? new Date(b.shootDate).toLocaleDateString() : 'Date TBD'}
                             </span>
-                            <span className="font-bold text-[#2DD4BF]">
+                            <span className="font-bold text-primary">
                               ${b.totalPrice?.toLocaleString()}
                             </span>
                           </div>
 
-                          <div className="flex items-center justify-between text-[11px] text-[#8B96A0]/70 pt-1">
+                          <div className="flex items-center justify-between text-[11px] text-on-surface-variant/70 pt-1">
                             <span>Deposit: ${b.depositAmount}</span>
                             <span className="capitalize">{b.location || 'Accra'}</span>
                           </div>
@@ -134,25 +134,25 @@ export const Bookings: React.FC = () => {
 
                         {/* Direct Quick Move Arrow Controls */}
                         <div
-                          className="flex items-center justify-between pt-2 border-t border-[#262D34]/50"
+                          className="flex items-center justify-between pt-2 border-t border-outline/50"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <button
                             disabled={col.id === 'pending_contract'}
                             onClick={() => b.id && handleMoveStatus(b.id, b.status, 'prev')}
                             title="Move to previous status"
-                            className="p-1 rounded bg-[#0A0D10] text-[#8B96A0] hover:text-[#F2F4F5] hover:bg-[#262D34] disabled:opacity-20 cursor-pointer"
+                            className="p-1 rounded bg-surface-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-3 disabled:opacity-20 cursor-pointer"
                           >
                             <ChevronLeft className="w-3.5 h-3.5" />
                           </button>
 
-                          <span className="text-[10px] text-[#8B96A0]/50">Quick Move</span>
+                          <span className="text-[10px] text-on-surface-variant/50">Quick Move</span>
 
                           <button
                             disabled={col.id === 'completed'}
                             onClick={() => b.id && handleMoveStatus(b.id, b.status, 'next')}
                             title="Move to next status"
-                            className="p-1 rounded bg-[#0A0D10] text-[#2DD4BF] hover:bg-[#2DD4BF]/20 disabled:opacity-20 cursor-pointer"
+                            className="p-1 rounded bg-surface-2 text-primary hover:bg-primary/20 disabled:opacity-20 cursor-pointer"
                           >
                             <ChevronRight className="w-3.5 h-3.5" />
                           </button>

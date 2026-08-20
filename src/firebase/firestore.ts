@@ -7,6 +7,7 @@ import {
   addDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   onSnapshot,
   query,
   where,
@@ -96,27 +97,21 @@ export async function testConnection() {
 
 const DEFAULT_SERVICES: Omit<PhotographyService, 'id'>[] = [
   {
-    name: 'Commercial & Advertising',
-    description: 'High-impact commercial photography, campaign visuals, and brand storytelling.',
-    startingPrice: 1500,
+    name: 'Corporate Events',
+    description: 'Full coverage for conferences, summits, launches, and corporate gatherings.',
+    startingPrice: 1600,
     isActive: true
   },
   {
-    name: 'Event Coverage',
-    description: 'Comprehensive photography for galas, summits, corporate events & private celebrations.',
-    startingPrice: 1200,
+    name: 'Brand & Product Photography',
+    description: 'Studio and on-location sessions for founders, teams, and product lines that need a consistent visual identity.',
+    startingPrice: 650,
     isActive: true
   },
   {
-    name: 'Executive & Editorial Portraits',
-    description: 'Premium headshots, executive profiles, and fashion editorial shoots.',
-    startingPrice: 500,
-    isActive: true
-  },
-  {
-    name: 'Product & E-Commerce Photography',
-    description: 'Studio lighting and multi-angle product photography for luxury e-commerce.',
-    startingPrice: 800,
+    name: 'Night Life, Parties & Dinners',
+    description: 'Candid, atmosphere-first coverage for private dinners, parties, and nightlife events.',
+    startingPrice: 900,
     isActive: true
   }
 ];
@@ -195,6 +190,14 @@ export const updateService = async (id: string, data: Partial<PhotographyService
     await updateDoc(doc(db, SERVICES_COL, id), data);
   } catch (error) {
     handleFirestoreError(error, OperationType.UPDATE, `${SERVICES_COL}/${id}`);
+  }
+};
+
+export const deleteService = async (id: string) => {
+  try {
+    await deleteDoc(doc(db, SERVICES_COL, id));
+  } catch (error) {
+    handleFirestoreError(error, OperationType.DELETE, `${SERVICES_COL}/${id}`);
   }
 };
 

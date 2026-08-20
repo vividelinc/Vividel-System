@@ -19,7 +19,7 @@ export function Footer() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Vividel Inc.</p>
           <p className="mt-4 max-w-md text-sm leading-7 text-on-surface-variant">
-            Commercial event coverage, brand photography, and product photography. Based in Ghana, working internationally.
+            Corporate events, brand & product photography, and night life coverage. Based in Ghana, working internationally.
           </p>
 
           <div className="mt-6 flex items-center gap-3">

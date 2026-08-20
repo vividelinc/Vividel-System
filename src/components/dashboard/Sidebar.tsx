@@ -33,12 +33,12 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#10151A] border-r border-[#262D34] flex flex-col justify-between shrink-0 h-screen sticky top-0">
+    <aside className="w-64 bg-surface-1 border-r border-outline flex flex-col justify-between shrink-0 h-screen sticky top-0">
       <div>
         {/* Brand Header */}
-        <div className="p-6 border-b border-[#262D34]">
+        <div className="p-6 border-b border-outline">
           <img src={vividelLogo} alt="Vividel Inc." className="h-8 w-auto" />
-          <p className="mt-2 text-[10px] text-[#2DD4BF] uppercase tracking-widest font-semibold">
+          <p className="mt-2 text-[10px] text-primary uppercase tracking-widest font-semibold">
             Studio OS
           </p>
         </div>
@@ -53,8 +53,8 @@ export const Sidebar: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all ${
                   isActive
-                    ? 'bg-[#2DD4BF] text-[#0A0D10] font-bold shadow-md shadow-[#2DD4BF]/20'
-                    : 'text-[#8B96A0] hover:text-[#F2F4F5] hover:bg-[#1D242B]'
+                    ? 'bg-primary text-primary-foreground font-bold shadow-md shadow-primary/20'
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-2'
                 }`
               }
             >
@@ -70,7 +70,7 @@ export const Sidebar: React.FC = () => {
             href="/book"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium text-[#2DD4BF] bg-[#2DD4BF]/10 border border-[#2DD4BF]/30 hover:bg-[#2DD4BF]/20 transition-all"
+            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium text-primary bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-all"
           >
             <span className="flex items-center gap-2">
               <Layers className="w-3.5 h-3.5" /> Client Booking Form
@@ -81,21 +81,21 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* User Profile Footer */}
-      <div className="p-4 border-t border-[#262D34] bg-[#10151A]">
+      <div className="p-4 border-t border-outline bg-surface-1">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-full bg-[#171D23] border border-[#2DD4BF]/50 flex items-center justify-center text-xs font-bold text-[#2DD4BF] shrink-0">
+            <div className="w-8 h-8 rounded-full bg-primary-soft border border-primary/50 flex items-center justify-center text-xs font-bold text-primary shrink-0">
               JA
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-semibold text-[#F2F4F5] truncate">James Akabo Jnr</p>
-              <p className="text-[10px] text-[#8B96A0] truncate">{user?.email || 'vividelinc@gmail.com'}</p>
+              <p className="text-xs font-semibold text-on-surface truncate">James Akabo Jnr</p>
+              <p className="text-[10px] text-on-surface-variant truncate">{user?.email || 'vividelinc@gmail.com'}</p>
             </div>
           </div>
           <button
             onClick={handleLogout}
             title="Sign Out"
-            className="text-[#8B96A0] hover:text-rose-400 p-1.5 rounded-lg hover:bg-[#171D23] transition-colors cursor-pointer"
+            className="text-on-surface-variant hover:text-rose-600 p-1.5 rounded-lg hover:bg-surface-2 transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
           </button>

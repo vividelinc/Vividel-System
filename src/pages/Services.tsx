@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import { DISCOVERY_CALL_URL, services } from '../data/siteContent';
+import { DISCOVERY_CALL_URL, faqs, services } from '../data/siteContent';
 import { setPageMeta } from '../lib/pageMeta';
 
 export default function ServicesPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   useEffect(() => {
-    setPageMeta('Services | Vividel Inc.', 'Explore commercial event, brand, and product photography packages.');
+    setPageMeta('Services | Vividel Inc.', 'Explore corporate event, brand and product, and nightlife photography packages.');
   }, []);
 
   return (
@@ -35,6 +38,35 @@ export default function ServicesPage() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mx-auto mt-20 max-w-3xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary">FAQ</p>
+        <h2 className="mt-2 text-headline text-on-surface">Common questions.</h2>
+
+        <div className="mt-8 divide-y divide-outline rounded-[1.5rem] border border-outline bg-surface-1 shadow-elevation-2">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div key={faq.question}>
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                >
+                  <span className="text-sm font-semibold text-on-surface sm:text-base">{faq.question}</span>
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 text-primary transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {isOpen && (
+                  <p className="px-6 pb-5 text-sm leading-7 text-on-surface-variant">{faq.answer}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

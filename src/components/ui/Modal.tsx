@@ -6,7 +6,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: React.ReactNode;
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl';
   closeOnOverlayClick?: boolean;
 }
 
@@ -37,7 +37,13 @@ export const Modal: React.FC<ModalProps> = ({
     sm: 'max-w-sm',
     md: 'max-w-md',
     lg: 'max-w-lg',
-    xl: 'max-w-xl'
+    xl: 'max-w-xl',
+    '2xl': 'max-w-2xl',
+    '3xl': 'max-w-3xl',
+    '4xl': 'max-w-4xl',
+    '5xl': 'max-w-5xl',
+    '6xl': 'max-w-6xl',
+    '7xl': 'max-w-7xl'
   };
 
   return (
@@ -63,7 +69,7 @@ export const Modal: React.FC<ModalProps> = ({
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="max-h-[80vh] overflow-y-auto p-6">{children}</div>
+        <div className="max-h-[88vh] overflow-y-auto p-6">{children}</div>
       </div>
     </div>
   );
