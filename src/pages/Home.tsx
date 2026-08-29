@@ -23,37 +23,40 @@ export default function Home() {
       <Lightbox item={selectedItem} items={portfolioItems} onClose={() => setSelectedItem(null)} onSelect={setSelectedItem} />
 
       <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/portfolio/corporate-events/roundtable.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-surface-1/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-surface-1 via-surface-1/85 to-surface-1/30" />
+        <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
+          <div className="relative z-10 flex items-center px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+            <div className="max-w-xl">
+              <p className="inline-flex rounded-full border border-primary/60 bg-primary-soft px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
+                Corporate Events • Brand & Product • Night Life
+              </p>
+              <h1 className="mt-6 text-display text-on-surface">
+                Professional photography for brands that mean business.
+              </h1>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-on-surface-variant">
+                Vividel Inc. delivers corporate event coverage, brand and product photography, and nightlife coverage with a fast, reliable turnaround.
+              </p>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="max-w-2xl">
-            <p className="inline-flex rounded-full border border-primary/60 bg-primary-soft px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Corporate Events • Brand & Product • Night Life
-            </p>
-            <h1 className="mt-6 text-display text-on-surface">
-              Professional photography for brands that mean business.
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-on-surface-variant">
-              Vividel Inc. delivers corporate event coverage, brand and product photography, and nightlife coverage with a fast, reliable turnaround.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
-                <Button variant="primary" size="lg">
-                  Book a Discovery Call
-                </Button>
-              </a>
-              <Link to="/portfolio">
-                <Button variant="outline" size="lg">
-                  View Portfolio
-                </Button>
-              </Link>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href={DISCOVERY_CALL_URL} target="_blank" rel="noreferrer">
+                  <Button variant="primary" size="lg">
+                    Book a Discovery Call
+                  </Button>
+                </a>
+                <Link to="/portfolio">
+                  <Button variant="outline" size="lg">
+                    View Portfolio
+                  </Button>
+                </Link>
+              </div>
             </div>
+          </div>
+
+          <div className="relative hidden min-h-[420px] lg:block">
+            <img
+              src="/portfolio/corporate-events/delegates-portrait.jpg"
+              alt="Delegates sharing a moment at a corporate event covered by Vividel"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -63,15 +66,25 @@ export default function Home() {
           <p className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-on-surface-variant">
             Trusted by
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            {trustedClients.map((client) => (
-              <span
-                key={client}
-                className="text-sm font-semibold uppercase tracking-[0.08em] text-on-surface-variant/80"
-              >
-                {client}
-              </span>
-            ))}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+            {trustedClients.map((client) =>
+              client.logo ? (
+                <img
+                  key={client.name}
+                  src={client.logo}
+                  alt={client.name}
+                  title={client.name}
+                  className="h-11 w-auto object-contain opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+                />
+              ) : (
+                <span
+                  key={client.name}
+                  className="text-sm font-semibold uppercase tracking-[0.08em] text-on-surface-variant/80"
+                >
+                  {client.name}
+                </span>
+              )
+            )}
           </div>
         </div>
       </section>

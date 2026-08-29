@@ -21,21 +21,26 @@ export const socialLinks: SocialLink[] = [
   }
 ];
 
-// Displayed as a text/wordmark trust bar rather than pulled logos — see
-// conversation notes on why we didn't scrape third-party brand marks.
-export const trustedClients: string[] = [
-  'World Bank Ghana',
-  "Ministry of Education, Ghana",
-  "Attorney General's Office, Kumasi",
-  'Bolt Ghana',
-  'OFI (Olam Food Ingredients)',
-  'OCP (Olam Cocoa Processing)',
-  'Chamber of Agribusiness Ghana',
-  'Lancaster Kumasi City',
-  'Cedar Restaurants',
-  'The Joint Foods',
-  'Ridge Tennis Club',
-  'Compassion Ghana'
+// Rendered as plain wordmark text by default; `logo` is only set for the
+// handful of clients whose actual logo file was supplied to the project.
+export type TrustedClient = {
+  name: string;
+  logo?: string;
+};
+
+export const trustedClients: TrustedClient[] = [
+  { name: 'World Bank Ghana' },
+  { name: 'Ministry of Education, Ghana' },
+  { name: "Attorney General's Office, Kumasi" },
+  { name: 'Bolt Ghana', logo: '/logos/bolt.svg' },
+  { name: 'OFI (Olam Food Ingredients)' },
+  { name: 'OCP (Olam Cocoa Processing)' },
+  { name: 'Chamber of Agribusiness Ghana', logo: '/logos/chamber-of-agribusiness.jpg' },
+  { name: 'Lancaster Kumasi City' },
+  { name: 'Cedar Restaurants' },
+  { name: 'The Joint Foods' },
+  { name: 'Ridge Tennis Club' },
+  { name: 'Dag Heward-Mills Ministries', logo: '/logos/dhm-ministries.png' }
 ];
 
 export type ServiceItem = {
