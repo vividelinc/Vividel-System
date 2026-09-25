@@ -4,4 +4,4 @@ Disallow: /book
 Disallow: /login
 Disallow: /dashboard
 
-Sitemap: https://vividel-system.vercel.app/sitemap.xml
+Sitemap: https://vividelinc.com/sitemap.xml
